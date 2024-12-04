@@ -1,13 +1,12 @@
+import { render } from "@testing-library/react";
+
 export function DetailsView(props) {
 
-    function renderIngredientsCB(item, index) {
-            return <li key={index}>{item.name} {item.amount} {item.unit}</li>;
-    };
 
-    function handleAddToMenuACB() {
-        props.addToMenu(props.dishData);
-        window.location.hash = "#/search";
-    };
+    function renderLyricsCB(lyric, index) {
+        console.log(lyric);
+        return <li style={{display: "block", height: "1em"}} key={index}>{lyric}</li>;
+    }
 
 
 
@@ -15,9 +14,9 @@ export function DetailsView(props) {
     return (
         <div>
             <p style={{whiteSpace: "pre-line"}} id="original-lyrics">
-
-            {props.dishData}
-
+            <ul style={{listStyle: "none"}}>
+            {props.dishData.map(renderLyricsCB)}
+            </ul>
             </p>
 
             <button onClick={() => (window.location.hash = "#/search")}>Cancel</button>

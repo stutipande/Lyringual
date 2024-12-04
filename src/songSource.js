@@ -14,39 +14,35 @@ export function parseResultsACB(result) {
 
 export async function processSongDetailsACB(result) {
     console.log(result);
-    const reader = result.body.getReader(); // Access the ReadableStream and get the reader
-    const decoder = new TextDecoder();     // To decode Uint8Array chunks into text
-    let text = '';                         // To accumulate the data
+    const reader = result.body.getReader();
+    const decoder = new TextDecoder();    
+    let text = '';                        
 
-    // Loop to read the stream
     while (true) {
         const { done, value } = await reader.read();
         if (done) {
-            break; // Exit the loop when the stream is done
+            break;
         }
-        text += decoder.decode(value, { stream: true }); // Decode the chunk and append it
+        text += decoder.decode(value, { stream: true }); 
     }
     console.log(text);
 
-    // Extract the second document.write() content
+
     const matches = text.match(/document\.write\((JSON\.parse\(.*?\))\)/);
     let rawJsonString = '';
     if (matches && matches[1]) {
-    // Extract the JSON.parse() part
+
     const jsonParsePart = matches[1];
 
-    // Extract the string inside JSON.parse()
     const jsonStringMatch = jsonParsePart.match(/JSON\.parse\('(.+?)'\)/);
     
     if (jsonStringMatch && jsonStringMatch[1]) {
-        // Unescape the JSON string
         rawJsonString = matches[1].replace("JSON.parse('", "").slice(0, -2);
 
-        // Unescape the JSON string
         rawJsonString = rawJsonString
-            .replace(/\\\\/g, "\\") // Unescape backslashes
+            .replace(/\\\\/g, "\\")
             .replace(/\\"/g, '"')
-            .replace(/\\'/g, "'");  // Unescape double quotes
+            .replace(/\\'/g, "'"); 
 
         console.log(rawJsonString);
             
@@ -54,23 +50,26 @@ export async function processSongDetailsACB(result) {
 
         console.log('Extracted JSON:', rawJsonString);
 
-        // You can now proceed to process the JSON as shown earlier
     } else {
         console.log('No JSON.parse content found.');
     }
     } else {
     console.log('No document.write with JSON.parse found.');
     }
-    rawJsonString = rawJsonString.replace("<br>", "\n");
+    rawJsonString = rawJsonString.replace("<br>", "\n").replace(/\[.*?\]/g, '').replace("Powered by Genius", "");
     const parser = new DOMParser();
     const doc = parser.parseFromString(rawJsonString, 'text/html');
 
-    // Extract the plain text from the parsed HTML
-    const textContent = doc.body.textContent || doc.body.innerText;
+    let textContent = doc.body.textContent || doc.body.innerText;
 
-    console.log(textContent);
+    textContent = textContent.split(/\r?\n/)
 
-    return textContent;
+    const startIndex = textContent.findIndex(item => item.trim() !== "");
+
+    textContent = textContent.slice(startIndex);
+
+
+    return textContent.slice(0, textContent.length - 10);
 }
 
 
