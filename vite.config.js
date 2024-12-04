@@ -30,7 +30,7 @@ const pages= {
     }
 };
 
-pages.index= pages.test;
+pages.index= pages.react;
 
 export default defineConfig(function(params){
     const {vue, react}=pages;

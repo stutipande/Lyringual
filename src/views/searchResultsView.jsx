@@ -1,25 +1,25 @@
 export function SearchResultsView(props) {
  
     // Event handler for dish click
-    function handleDishClickACB(dish) {
+    function handleSongClickACB(song) {
             window.location.hash = '#/details';
-            return props.onDishClick(dish); 
+            return props.onSongClick(song); 
     };
 
     // Render search results
     function renderSearchResultsCB() {
-        return props.searchResults.map((dish) => (
+        return props.searchResults.map((song) => (
             <span 
                 
-                key={dish.id} 
-                onClick={() => handleDishClickACB(dish)} 
+                key={song.id} 
+                onClick={() => handleSongClickACB(song)} 
             >
                 <img
-                    src={dish.image} 
-                    alt={dish.title} 
+                    src={song.albumArt} 
+                    alt={song.title} 
                     height="100"  
                 />
-                <div>{dish.title}</div> 
+                <div>{song.title}</div> 
                 <button onClick={() => (window.location.hash = "#/details")}>View details</button><br></br>
             </span>
         ));

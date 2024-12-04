@@ -1,5 +1,4 @@
-import { getDishDetails, searchDishes } from "./dishSource";
-import { searchSongs, getSongDetails } from "./songSource";
+// import { getDishDetails, searchDishes } from "./dishSource";
 import { resolvePromise } from "./resolvePromise";
 
 
@@ -14,12 +13,7 @@ const model = {
     searchParams: {},
     searchResultsPromiseState: {},
     currentDishPromiseState: {},
-    currentSongId: null,
-    clientId: null,
 
-    setClientId() {
-        resolvePromise(getClientId(), this.searchResultsPromiseState);
-    },
 
     setSearchQuery(query) {
         this.searchParams.query = query;
@@ -29,20 +23,13 @@ const model = {
         this.searchParams.type = type;
     },
 
-    doSearch() {
-        resolvePromise(searchSongs(this.searchParams.query, this.searchParams.type),this.searchResultsPromiseState);
+    doSearch(query) {
+        resolvePromise(searchDishes(query),this.searchResultsPromiseState);
     },
 
     setCurrentDishId(dishId){
         if(dishId && this.currentDishId != dishId ) resolvePromise(getDishDetails(dishId),this.currentDishPromiseState);
         this.currentDishId = dishId;
-        
-    },
-
-    setCurrentSongId(songId){
-        console.log('Setting songID');
-        if(songId && this.currentSongId != songId ) resolvePromise(getSongDetails(songId),this.currentDishPromiseState);
-        this.currentSongId = songId;
         
     },
     

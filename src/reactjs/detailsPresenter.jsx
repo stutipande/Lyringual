@@ -11,6 +11,7 @@ function DetailsRender(props) {
 
 
   function renderDetails(promiseState) {
+    console.log(promiseState);
     // No promise
     if (!promiseState.promise) {
       return <div>No data</div>;

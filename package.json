@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "firebase": "^9.17.1",
+        "genius-lyrics-api": "^3.2.1",
         "mobx": "^6.8.0",
         "mobx-react-lite": "^3.4.2",
         "parse-git-config": "^3.0.0",
@@ -32,8 +33,6 @@
         "react-dom": "^18.0.0",
         "react-router-dom": "^6.8.1",
         "solid-js": "^1.6.10",
-        "terser": "5.16.5",
-        "vue": "^3.2.47",
-        "vue-router": "^4.1.6"
+        "terser": "5.16.5"
     }
 }

@@ -5,12 +5,13 @@ import { SearchResultsView } from '../views/searchResultsView.jsx';
 const Search = observer( 
 function SearchRender(props) {
     // Dish type options
-    const dishTypeOptions = ["starter", "main course", "dessert"];
+    const dishTypeOptions = ["artist", "title"];
     const searchText = props.model.searchParams.query;  
-    const searchType = props.model.searchParams.type   
+    const searchType = props.model.searchParams.type;   
 
     // Custom Event Handlers
     function handleTextChange(text) {
+        console.log(text);
         props.model.setSearchQuery(text); 
     }
 
@@ -19,11 +20,12 @@ function SearchRender(props) {
     }
 
     function searchNowACB() {
-        props.model.doSearch(props.model.searchParams);  
+        props.model.doSearch();  
     }
 
-    function setCurrentDishACB(dish) {
-        props.model.setCurrentDishId(dish.id); 
+    function setCurrentSongACB(song) {
+        console.log('Setting current song to:', song.id);
+        props.model.setCurrentSongId(song.id); 
     }
 
     function renderSearchResults(promiseState) {
@@ -42,7 +44,7 @@ function SearchRender(props) {
         if (promiseState.data) {
             return <SearchResultsView
                 searchResults={promiseState.data.length ? promiseState.data : []}
-                onDishClick={setCurrentDishACB} 
+                onSongClick={setCurrentSongACB} 
             />;
         }
 

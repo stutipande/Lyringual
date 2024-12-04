@@ -1,4 +1,4 @@
-import "/src/teacherFetch.js"; // protection against fetch() in infinite re-render
+//import "/src/teacherFetch.js"; // protection against fetch() in infinite re-render
 import { createElement } from "react";
 import { createRoot } from "react-dom/client";
 import "/src/firebaseModel.js";
@@ -18,7 +18,13 @@ import {ReactRoot} from "/src/reactjs/ReactRoot.jsx"
 
 const rootJSX= <ReactRoot model={reactiveModel} />
   
-reactiveModel.doSearch({});
+// console.log('reactiveModel.clientId', reactiveModel.clientId)
+// if(!reactiveModel.clientId) {
+//     reactiveModel.setClientId();
+// }
+reactiveModel.setSearchType('title');  
+reactiveModel.setSearchQuery('Like a Prayer');  
+reactiveModel.doSearch();
 
 createRoot(document.getElementById("root")).render(rootJSX);
 

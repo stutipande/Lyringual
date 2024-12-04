@@ -14,17 +14,15 @@ export function DetailsView(props) {
 
     return (
         <div>
-            <img src={props.dishData.image} />
-            <button onClick={handleAddToMenuACB} disabled={props.isDishInMenu}>Add to menu</button>
-            <p>Total price ({props.guests} guests): {(props.dishData.pricePerServing * props.guests).toFixed(2)}</p>
-            <p>Price per person: {(props.dishData.pricePerServing).toFixed(2)}</p>
-            <p>Ingredients:</p>
-            <ul>
-            {props.dishData.extendedIngredients.map(renderIngredientsCB)}
-            </ul>
-            <p>{props.dishData.instructions}</p>
-            <a href={props.dishData.sourceUrl}>Link to recipe</a>
+            <p style={{whiteSpace: "pre-line"}} id="original-lyrics">
+
+            {props.dishData}
+
+            </p>
+
             <button onClick={() => (window.location.hash = "#/search")}>Cancel</button>
+            
         </div>
+        
     );
 }
