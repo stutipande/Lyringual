@@ -120,45 +120,18 @@ export function searchSongs(searchParams, type) {
 
 }
 
-// const translateText = async (text, targetLanguage) => {
-    
-
-//     try {
-
-
-//         if (!response.ok) {
-//             throw new Error(`Error: ${response.status} - ${response.statusText}`);
-//         }
-
-//         const data = await response.json();
-//         const translatedText = data.data.translations[0].translatedText;
-
-//         console.log("Translated Text:", translatedText);
-//         return translatedText;
-//     } catch (error) {
-//         console.error("Error translating text:", error);
-//         return null;
-//     }
-// };
-
-// // Example usage
-// translateText("Hello, world!", "es"); // Translates "Hello, world!" to Spanish
-
-
 
 export async function getSongTranslation(original, lang = "fr") {
     console.log('Translating..');
 
     const url = `https://translation.googleapis.com/language/translate/v2?key=${G_API_KEY}`;
 
-    // Create an array of promises for all translation requests
     const promises = original.map((line) => {
         const requestData = {
             q: line,
             target: lang
         };
 
-        // Return a promise for each fetch request
         return fetch(url, {
             method: 'POST',
             headers: {
@@ -173,7 +146,6 @@ export async function getSongTranslation(original, lang = "fr") {
         }).then(json => json.data.translations[0].translatedText);
     });
 
-    // Wait for all promises to resolve
     const translation = await Promise.all(promises);
 
     return [original, translation];
