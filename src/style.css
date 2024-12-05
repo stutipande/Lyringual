@@ -4,6 +4,7 @@
 :root {
     --background-color: #121212;
     --foreground-color: #1e1e1e;
+    --hover-color: #2e2e2e;
     --text-color: #e0e0e0;
     --muted-text-color: #a0a0a0;
     --primary-color: #bb86fc; /* Purple */
@@ -84,6 +85,31 @@
     box-shadow: 0 4px 8px var(--box-shadow-color);
     margin-bottom: var(--spacing-large);
   }
+
+  .song {
+    display: inline-block;
+    height: 180px;
+    width: 250px;
+    cursor: pointer;
+    margin-bottom: 0;
+  }
+
+  .song img {
+    border-radius: var(--border-radius);
+  }
+
+  .song:hover {
+
+    background-color: var(--hover-color);
+    transition: 0.2s all;
+
+  }
+
+  .searchResult {
+    display: flex;
+    flex-wrap: wrap; /* Wrap to the next row if cards don't fit in one line */
+    gap: 16px;       /* Space between cards */
+}
   
   .alert {
     background-color: var(--error-color);
@@ -103,13 +129,14 @@
   
   .lyrics {
     font-family: var(--header-font);
-    font-size: 24pt;
-    width: 40%;
+    font-size: 20pt;
+    width: 46%;
     display: inline-block;
   }
 
   .lyrics li {
-    display: block;
+    height: 1.5em;
+    text-wrap: nowrap;
   }
 
 /* A debug class, used to separate components graphically during development */
@@ -164,7 +191,8 @@
        
         background-color: blueviolet;
         width: 100%;
-        flex: 0.2
+        flex: 0.2;
+        display: none;
     
     }
 
@@ -175,10 +203,6 @@
     
 }
 
-.searchResult span {
-    width: 200px;
-    display: inline-block;
-}
         
     
 }

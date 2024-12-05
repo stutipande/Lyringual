@@ -9,8 +9,8 @@ export function SearchResultsView(props) {
     // Render search results
     function renderSearchResultsCB() {
         return props.searchResults.map((song) => (
-            <span 
-                
+            <div 
+                class="card song"
                 key={song.id} 
                 onClick={() => handleSongClickACB(song)} 
             >
@@ -19,9 +19,8 @@ export function SearchResultsView(props) {
                     alt={song.title} 
                     height="100"  
                 />
-                <div>{song.title}</div> 
-                <button onClick={() => (window.location.hash = "#/details")}>View details</button><br></br>
-            </span>
+                <p>{song.title}</p> 
+            </div>
         ));
     };
 

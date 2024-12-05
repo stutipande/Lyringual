@@ -5,7 +5,7 @@ export function DetailsView(props) {
 
     function renderLyricsCB(lyric, index) {
         console.log(lyric);
-        return <li style={{display: "block", height: "1em"}} key={index}>{decodeHtmlEntities(lyric)}</li>;
+        return <li style={{display: "block"}} key={index}>{decodeHtmlEntities(lyric)}</li>;
     }
 
     function decodeHtmlEntities(text) {
