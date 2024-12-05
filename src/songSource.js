@@ -7,7 +7,7 @@ const translate = new Translate({PROJECT_ID});
 
 console.log('checkem', translate);
 
-translate.translate('this is a test', 'ru').then((result) => {console.log(result)});
+//translate.translate('this is a test', 'ru').then((result) => {console.log(result)});
 
 
 export function searchSongsACB(result) {
@@ -115,9 +115,6 @@ export function searchSongs(searchParams, type) {
     console.log(options);
 
     return searchSong(options);
-
-    
-
 }
 
 
@@ -126,24 +123,24 @@ export async function getSongTranslation(original, lang = "fr") {
 
     const url = `https://translation.googleapis.com/language/translate/v2?key=${G_API_KEY}`;
 
-    const promises = original.map((line) => {
+    const promises = original.map(async (line) => {
         const requestData = {
             q: line,
             target: lang
         };
 
-        return fetch(url, {
+        const response = await fetch(url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(requestData),
-        }).then(response => {
-            if (!response.ok) {
-                throw new Error(`Error: ${response.status} - ${response.statusText}`);
-            }
-            return response.json();
-        }).then(json => json.data.translations[0].translatedText);
+        });
+        if (!response.ok) {
+            throw new Error(`Error: ${response.status} - ${response.statusText}`);
+        }
+        const json = await response.json();
+        return json.data.translations[0].translatedText;
     });
 
     const translation = await Promise.all(promises);
@@ -175,12 +172,8 @@ export function getSongDetails(id) {
         });
     } catch (error) {
         console.error(error);
-        throw new Error('Failed to get dishes');
+        throw new Error('Failed to get lyrics');
         
     }
 
-}
-
-export function getDishDetails(id) {
-   return getMenuDetails([id]).then(processDishDetailsACB);
 }

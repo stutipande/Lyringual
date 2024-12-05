@@ -6,7 +6,7 @@ import { connectToFirebase } from "../firebaseModel";
 
 window.React={createElement:createElement} 
 
-import { model } from '/src/DinnerModel.js';
+import { model } from "../AppModel";
 import { observable, configure, reaction } from "mobx";
 configure({ enforceActions: "never", });  // we don't use Mobx actions
 const reactiveModel= observable(model)

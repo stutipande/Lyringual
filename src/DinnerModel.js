@@ -1,4 +1,3 @@
-import { getDishDetails, searchDishes } from "./dishSource";
 import { searchSongs, getSongDetails } from "./songSource";
 import { resolvePromise } from "./resolvePromise";
 
@@ -8,12 +7,9 @@ import { resolvePromise } from "./resolvePromise";
    It is an abstract object, i.e. it knows nothing about graphics and interaction.
 */
 const model = {  
-    numberOfGuests: 2,
-    dishes: [],
     currentDishId: null,  // null means "intentionally empty"
     searchParams: {},
     searchResultsPromiseState: {},
-    currentDishPromiseState: {},
     currentSongId: null,
     clientId: null,
     lang: "fr",
@@ -34,44 +30,13 @@ const model = {
         resolvePromise(searchSongs(this.searchParams.query, this.searchParams.type),this.searchResultsPromiseState);
     },
 
-    setCurrentDishId(dishId){
-        if(dishId && this.currentDishId != dishId ) resolvePromise(getDishDetails(dishId),this.currentDishPromiseState);
-        this.currentDishId = dishId;
-        
-    },
-
     setCurrentSongId(songId){
         console.log('Setting songID');
         if(songId && this.currentSongId != songId ) resolvePromise(getSongDetails(songId),this.currentDishPromiseState);
         this.currentSongId = songId;
         
     },
-    
-    setNumberOfGuests(number){
 
-        if(number < 1 || !Number.isInteger(number)) throw new Error('number of guests not a positive integer');
-        this.numberOfGuests = number;
-
-    },
-    
-    addToMenu(dishToAdd){
-        // array spread syntax example. Make sure you understand the code below.
-        // It sets this.dishes to a new array [   ] where we spread (...) the elements of the existing this.dishes
-        this.dishes= [...this.dishes, dishToAdd];
-    },
-
-    // filter callback exercise
-    removeFromMenu(dishToRemove){
-        function shouldWeKeepDishCB(dish){
-
-            return dish.id !== dishToRemove.id;
-
-        }
-        this.dishes = this.dishes.filter(shouldWeKeepDishCB);
-    },
-    
- 
-    // more methods will be added here, don't forget to separate them with comma!
 };
 
 export {model};

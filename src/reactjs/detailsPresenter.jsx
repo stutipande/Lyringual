@@ -3,11 +3,9 @@ import { observer } from "mobx-react-lite";
 
 const Details = observer( 
 function DetailsRender(props) {
-  const currentDishPromiseState = props.model.currentDishPromiseState;
+  console.log("detailsProps: ", props)
+  const currentSongPromiseState = props.model.currentSongPromiseState;
 
-  function findDishCB(dish) {
-    return props.model.currentDishId === dish.id;
-  }
 
 
   function renderDetails(promiseState) {
@@ -31,26 +29,17 @@ function DetailsRender(props) {
     if (promiseState.data) {
       return (
         <DetailsView
-          guests={props.model.numberOfGuests}
-          isDishInMenu={props.model.dishes.find(findDishCB)}
-          dishData={promiseState.data}
-          addToMenu={handleAddToMenuACB} 
+          lyricData = {promiseState.data}
         />
       );
     }
-
-      // Callback function for adding dish to the menu
-    function handleAddToMenuACB() {
-      props.model.addToMenu(promiseState.data);
-    }
-
   }
 
 
   
   return (
     <div>
-      {renderDetails(currentDishPromiseState)} 
+      {renderDetails(currentSongPromiseState)} 
     </div>
   );
 }

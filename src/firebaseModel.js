@@ -4,7 +4,6 @@ import { getDatabase, ref, get, set} from "/src/teacherFirebase.js";
 // Add relevant imports here 
 // TODO
 import {firebaseConfig} from "/src/firebaseConfig.js";
-import { getDishDetails, getMenuDetails } from "./dishSource";
 
 
 // Initialize Firebase
@@ -33,12 +32,8 @@ const rf= ref(db, REF);
 
 
  function modelToPersistence(model){
-    const dishIds = model.dishes.map(dish => dish.id);
-    const sortedDishId = dishIds.sort()
   return {
-    guests: model.numberOfGuests,
-    dishId:  sortedDishId,
-    currentDishId: model.currentDishId,
+    currentSongId: model.currentSongId
   };
 }
 
@@ -49,19 +44,12 @@ const rf= ref(db, REF);
   console.log('model', model);
 
   if (!dataFromPersistence) {
-    model.dishes = [];
-    dataFromPersistence = {dishId: undefined};
+    dataFromPersistence = {songId: undefined};
   } else {
-    model.setCurrentDishId(dataFromPersistence.currentDishId)
+    model.setCurrentSongId(dataFromPersistence.currentSongId)
   }
+}
 
-  model.setNumberOfGuests(dataFromPersistence.guests || 2);
-    
-    return getMenuDetails(dataFromPersistence.dishId || []).then(
-        function convertBackACB(dishes){
-          model.dishes = [...dishes];
-        })
- }
 
  function saveToFirebase(model){
     if (model.ready) {
@@ -76,7 +64,6 @@ function readFromFirebase(model){
   model.ready=false;
   return get(rf)
             .then(function convertACB(snapshot){
-                   // return promise
                    return persistenceToModel(snapshot.val(), model);
              })
             .then(function setModelReadyACB(){
@@ -88,7 +75,7 @@ function readFromFirebase(model){
 
   
   function isChangeImportantACB(){
-    return [model.numberOfGuests, model.dishes, model.currentDishId];
+    return [model.currentSongId];
   }
 
   function saveChangesACB(){
@@ -98,5 +85,4 @@ function readFromFirebase(model){
   readFromFirebase(model).then(() => watchFunction(isChangeImportantACB,saveChangesACB));
 
 }
-// Remember to uncomment the following line:
-export { connectToFirebase, modelToPersistence, persistenceToModel, saveToFirebase, readFromFirebase }
+export { connectToFirebase, modelToPersistence, persistenceToModel, saveToFirebase, readFromFirebase}

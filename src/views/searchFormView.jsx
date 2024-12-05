@@ -1,7 +1,7 @@
     export function SearchFormView(props) {
 
-    function renderDishTypeOptions() {
-        return props.dishTypeOptions.map(function(option, index) {
+    function renderSearchTypeOptions() {
+        return props.searchTypeOptions.map(function(option, index) {
             return <option key={index} value={option}>{option}</option>;
         });
     };
@@ -15,13 +15,14 @@
     }
 
     function handleSearch (){
-        props.onSearchDish();
+        props.onSearchSong();
     }
     return (
         <div>
+            <form onSubmit={handleSearch}>
             <input
                 type="text"
-                value={props.text} sdsd
+                value={props.text}
                 onChange={handleTextChange} 
             />
             <select
@@ -29,10 +30,10 @@
                 onChange={handleTypeChange}
             >
                 <option value="">Choose:</option>
-                {renderDishTypeOptions()}
+                {renderSearchTypeOptions()}
             </select>
-            <button onClick={handleSearch}>Search!</button><br></br>
-            <button onClick={() => (window.location.hash = "#/summary")}>View summary</button><br></br>
+            <button type = "submit">Search!</button><br></br>
+            </form>
         </div>
     );
 }

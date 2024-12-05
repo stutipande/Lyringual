@@ -1,5 +1,4 @@
-//import { getDishDetails, searchDishes } from "./dishSource";
-import { searchSongs } from "./songSource";
+import { searchSongs, getSongDetails } from "./songSource";
 import { resolvePromise } from "./resolvePromise";
 
 
@@ -12,8 +11,13 @@ const model = {
     searchParams: {},
     searchResultsPromiseState: {},
     currentSongPromiseState: {},
-    clientID: '',
+    clientId: null,
+    lang: "fr",
 
+
+    setClientId() {
+        resolvePromise(getClientId(), this.searchResultsPromiseState);
+    },
 
     setSearchQuery(query) {
         this.searchParams.query = query;
@@ -23,41 +27,19 @@ const model = {
         this.searchParams.type = type;
     },
 
-    doSearch(query) {
-        resolvePromise(searchSongs(query, this.clientID),this.searchResultsPromiseState);
+    doSearch() {
+        resolvePromise(searchSongs(this.searchParams.query, this.searchParams.type),this.searchResultsPromiseState);
     },
 
-    setCurrentDishId(dishId){
-        // if(dishId && this.currentDishId != dishId ) resolvePromise(getDishDetails(dishId),this.currentDishPromiseState);
-        // this.currentDishId = dishId;
-        
-    },
-    
-    setNumberOfGuests(number){
-
-        if(number < 1 || !Number.isInteger(number)) throw new Error('number of guests not a positive integer');
-        this.numberOfGuests = number;
-
-    },
-    
-    addToMenu(dishToAdd){
-        // array spread syntax example. Make sure you understand the code below.
-        // It sets this.dishes to a new array [   ] where we spread (...) the elements of the existing this.dishes
-        this.dishes= [...this.dishes, dishToAdd];
-    },
-
-    // filter callback exercise
-    removeFromMenu(dishToRemove){
-        function shouldWeKeepDishCB(dish){
-
-            return dish.id !== dishToRemove.id;
-
+    setCurrentSongId(songId){
+        console.log('Setting songID', songId);
+        if(songId && this.currentSongId != songId ) {
+            resolvePromise(getSongDetails(songId),this.currentSongPromiseState);
         }
-        this.dishes = this.dishes.filter(shouldWeKeepDishCB);
-    },
-    
- 
-    // more methods will be added here, don't forget to separate them with comma!
+
+        this.currentSongId = songId;
+        
+    }
 };
 
 export {model};
