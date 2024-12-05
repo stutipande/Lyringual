@@ -1,5 +1,14 @@
-import { GENIUS_ACCESS_TOKEN, GENIUS_CLIENT_ID, GENIUS_CLIENT_SERCRET, GENIUS_URL, PROXY_KEY, PROXY_URL_NEW } from "./apiConfig";
+import { PROJECT_ID, GENIUS_ACCESS_TOKEN, GENIUS_CLIENT_ID, GENIUS_CLIENT_SERCRET, GENIUS_URL, PROXY_KEY, PROXY_URL_NEW, G_API_KEY } from "./apiConfig";
 import { getLyrics, getSong, getSongById, searchSong } from 'genius-lyrics-api';
+import { Translate } from '@google-cloud/translate/build/src/v2';
+
+
+const translate = new Translate({PROJECT_ID});
+
+console.log('checkem', translate);
+
+translate.translate('this is a test', 'ru').then((result) => {console.log(result)});
+
 
 export function searchSongsACB(result) {
 
@@ -111,6 +120,68 @@ export function searchSongs(searchParams, type) {
 
 }
 
+// const translateText = async (text, targetLanguage) => {
+    
+
+//     try {
+
+
+//         if (!response.ok) {
+//             throw new Error(`Error: ${response.status} - ${response.statusText}`);
+//         }
+
+//         const data = await response.json();
+//         const translatedText = data.data.translations[0].translatedText;
+
+//         console.log("Translated Text:", translatedText);
+//         return translatedText;
+//     } catch (error) {
+//         console.error("Error translating text:", error);
+//         return null;
+//     }
+// };
+
+// // Example usage
+// translateText("Hello, world!", "es"); // Translates "Hello, world!" to Spanish
+
+
+
+export async function getSongTranslation(original, lang = "fr") {
+    console.log('Translating..');
+
+    const url = `https://translation.googleapis.com/language/translate/v2?key=${G_API_KEY}`;
+
+    // Create an array of promises for all translation requests
+    const promises = original.map((line) => {
+        const requestData = {
+            q: line,
+            target: lang
+        };
+
+        // Return a promise for each fetch request
+        return fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(requestData),
+        }).then(response => {
+            if (!response.ok) {
+                throw new Error(`Error: ${response.status} - ${response.statusText}`);
+            }
+            return response.json();
+        }).then(json => json.data.translations[0].translatedText);
+    });
+
+    // Wait for all promises to resolve
+    const translation = await Promise.all(promises);
+
+    return [original, translation];
+}
+
+
+
+
 export function getSongDetails(id) {
 
     console.log('Getting lyrics..')
@@ -126,10 +197,7 @@ export function getSongDetails(id) {
 
     try {
         return fetch(url, options).then(processSongDetailsACB)
-        .then((text) => {
-            console.log("Decoded text:", text);
-            return text;
-        })
+        .then(getSongTranslation)
         .catch((error) => {
             console.error("Error fetching or processing song details:", error);
         });
