@@ -1,4 +1,4 @@
-export function SearchFormView(props) {
+    export function SearchFormView(props) {
 
     function renderDishTypeOptions() {
         return props.dishTypeOptions.map(function(option, index) {

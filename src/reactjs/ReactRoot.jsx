@@ -2,6 +2,7 @@ import { Summary } from "./summaryPresenter.jsx";
 import { Sidebar } from "./sidebarPresenter.jsx";
 import { Search } from "./searchPresenter.jsx";
 import { Details } from "./detailsPresenter.jsx";
+import { Login } from "./loginPresenter.jsx";
 import { observer } from "mobx-react-lite";
 import {  createHashRouter,  RouterProvider, useParams} from "react-router-dom";
 
@@ -25,6 +26,10 @@ function makeRouter(model){
     {
         path: "/details",
         element: <Details model={model} />,
+    },
+    {
+        path: "/login",
+        element: <Login model={model} />,
     },
 
 

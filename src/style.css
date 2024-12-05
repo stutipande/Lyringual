@@ -1,6 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Oswald:wght@200..700&display=swap');
 
+.onTopOfEachOther {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
 :root {
     --background-color: #121212;
     --foreground-color: #1e1e1e;
@@ -93,6 +99,8 @@
     cursor: pointer;
     margin-bottom: 0;
   }
+
+  
 
   .song img {
     border-radius: var(--border-radius);
