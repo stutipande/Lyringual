@@ -127,16 +127,23 @@
     border-top: 1px solid var(--border-color);
   }
   
+  .bob{
+    display: flex;
+  }
+
   .lyrics {
+    align-self: flex-start;
+    padding-left: 0px;
+    padding-right: 20px;
     font-family: var(--header-font);
     font-size: 20pt;
-    width: 46%;
-    display: inline-block;
+    width: 50%;
   }
 
   .lyrics li {
-    height: 1.5em;
-    text-wrap: nowrap;
+    text-align: left;
+    line-height: 1.5em;
+    overflow-wrap: normal;
   }
 
 /* A debug class, used to separate components graphically during development */
@@ -176,6 +183,10 @@
 .searchResult span {
     width: 200px;
     display: inline-block;
+}
+
+.topLeftButton{
+  float: left;
 }
 }
 

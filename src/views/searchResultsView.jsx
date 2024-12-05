@@ -10,7 +10,7 @@ export function SearchResultsView(props) {
     function renderSearchResultsCB() {
         return props.searchResults.map((song) => (
             <div 
-                class="card song"
+                className="card song"
                 key={song.id} 
                 onClick={() => handleSongClickACB(song)} 
             >
@@ -25,6 +25,6 @@ export function SearchResultsView(props) {
     };
 
     return (
-        <div class="searchResult"> {renderSearchResultsCB()}</div>
+        <div className="searchResult"> {renderSearchResultsCB()}</div>
     );
 }

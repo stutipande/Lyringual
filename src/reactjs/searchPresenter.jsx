@@ -4,8 +4,7 @@ import { SearchResultsView } from '../views/searchResultsView.jsx';
 
 const Search = observer( 
 function SearchRender(props) {
-    // Dish type options
-    const dishTypeOptions = ["artist", "title"];
+    const searchTypeOptions = ["artist", "title"];
     const searchText = props.model.searchParams.query;  
     const searchType = props.model.searchParams.type;   
 
@@ -56,10 +55,10 @@ function SearchRender(props) {
             <SearchFormView
                 text={searchText}
                 type={searchType}
-                dishTypeOptions={dishTypeOptions}
+                searchTypeOptions={searchTypeOptions}
                 onTextChange={handleTextChange}  
                 onTypeChange={handleTypeChangeACB} 
-                onSearchDish={searchNowACB} 
+                onSearchSong={searchNowACB} 
                 
             />
 

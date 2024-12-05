@@ -19,23 +19,16 @@ function makeRouter(model){
         element: <Search model={model} />,
     },
     {
-        path: "/summary",
-        element: <Summary model={model} />,
-    },
-    {
         path: "/details",
         element: <Details model={model} />,
     },
-
-
 ])
 }
 
-const ReactRoot = observer(   //  will be added in week 3
+const ReactRoot = observer(
 function ReactRoot(props){
     return (props.model.ready ?
             <div class="flexParent">
-                <div class="sidebar"><Sidebar model={props.model}/></div>
                 <div class="mainContent">
                     <RouterProvider router={makeRouter(props.model)} />
                 </div>
