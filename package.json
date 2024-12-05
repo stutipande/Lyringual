@@ -24,6 +24,7 @@
         "vite-plugin-virtual-html": "1.0.2"
     },
     "dependencies": {
+        "@google-cloud/translate": "^8.5.0",
         "firebase": "^9.17.1",
         "genius-lyrics-api": "^3.2.1",
         "mobx": "^6.8.0",

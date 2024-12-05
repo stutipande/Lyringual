@@ -16,6 +16,7 @@ const model = {
     currentDishPromiseState: {},
     currentSongId: null,
     clientId: null,
+    lang: "fr",
 
     setClientId() {
         resolvePromise(getClientId(), this.searchResultsPromiseState);
