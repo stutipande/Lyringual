@@ -28,7 +28,7 @@ function SearchRender(props) {
     }
 
     function setPreferredLanguageACB(lang) {
-        console.log('Languge set to:', lang);
+        console.log('Language set to:', lang);
         props.model.setPreferredLanguage(lang); 
         saveToFirebase(props.model);
     }
