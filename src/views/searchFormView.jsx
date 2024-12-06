@@ -17,6 +17,11 @@
     function handleSearch (){
         props.onSearchSong();
     }
+
+    function handleLanguageChange(lang) {
+        props.setPreferredLanguage(lang);
+    }
+    
     return (
         <div>
             <form onSubmit={handleSearch}>
@@ -33,7 +38,19 @@
                 {renderSearchTypeOptions()}
             </select>
             <button type = "submit">Search!</button><br></br>
-            </form>
+            </form> 
+
+            <select
+                value={props.lang}
+                onChange={handleLanguageChange}
+            >
+                <option value="en">English</option>
+                <option value="se">Swedish</option>
+                <option value="es">Spanish</option>
+                <option value="fr">French</option>
+                
+            </select>
+            
         </div>
     );
 }

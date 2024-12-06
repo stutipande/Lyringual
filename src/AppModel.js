@@ -12,7 +12,7 @@ const model = {
     searchResultsPromiseState: {},
     currentSongPromiseState: {},
     clientId: null,
-    lang: "fr",
+    lang: "en",
 
 
     setClientId() {
@@ -39,7 +39,11 @@ const model = {
 
         this.currentSongId = songId;
         
-    }
+    },
+
+    setPreferredLanguage(lang) {
+        this.lang = lang;
+      }
 };
 
 export {model};
