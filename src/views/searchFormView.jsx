@@ -17,11 +17,16 @@
     function handleSearch (){
         props.onSearchSong();
     }
-
-    function handleLanguageChange(lang) {
-        props.setPreferredLanguage(lang);
+  
+    function handleLanguageChange(evt){
+        (props.onLanguageChange(evt.target.value));
+            
     }
-    
+
+    // Display last song
+    const lastSong = props.lastSongId ? props.lastSongId : "No previous song";  
+
+
     return (
         <div>
             <form onSubmit={handleSearch}>
@@ -43,13 +48,18 @@
             <select
                 value={props.lang}
                 onChange={handleLanguageChange}
-            >
+                >
                 <option value="en">English</option>
                 <option value="se">Swedish</option>
                 <option value="es">Spanish</option>
                 <option value="fr">French</option>
-                
-            </select>
+</select>
+
+        <div>   
+            <p>Last Song: {lastSong} </p>
+        </div>
+
+
             
         </div>
     );

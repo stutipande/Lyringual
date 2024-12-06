@@ -8,16 +8,9 @@ export function SummaryView(props){
     return (
             <div className="debug">
 
-  
-
 
               {/* TW 1.2 note the syntax: {JS_expression_or_comment} */}
               Summary for <span title="nr guests">{ props.people }</span> persons:
-
-
-
-
-
 
               <table>
                 <thead>

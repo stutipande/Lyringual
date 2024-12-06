@@ -27,6 +27,12 @@ function SearchRender(props) {
         props.model.setCurrentSongId(song.id); 
     }
 
+    function setPreferredLanguageACB(lang) {
+        console.log('Languge set to:', lang);
+        props.model.setPreferredLanguage(lang); 
+        saveToFirebase(props.model);
+    }
+
     function renderSearchResults(promiseState) {
         if (!promiseState.promise) {
             return <div>No data</div>; 
@@ -44,6 +50,7 @@ function SearchRender(props) {
             return <SearchResultsView
                 searchResults={promiseState.data.length ? promiseState.data : []}
                 onSongClick={setCurrentSongACB} 
+             
             />;
         }
 
@@ -59,7 +66,9 @@ function SearchRender(props) {
                 onTextChange={handleTextChange}  
                 onTypeChange={handleTypeChangeACB} 
                 onSearchSong={searchNowACB} 
-                
+                onLanguageChange = {setPreferredLanguageACB}
+                lastSongId={props.model.lastSongId} 
+
             />
 
             {renderSearchResults(props.model.searchResultsPromiseState)}

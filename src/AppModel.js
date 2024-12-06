@@ -8,6 +8,7 @@ import { resolvePromise } from "./resolvePromise";
 */
 const model = {  
     currentSongId: null,  // null means "intentionally empty"
+    lastSongId: null,
     searchParams: {},
     searchResultsPromiseState: {},
     currentSongPromiseState: {},
@@ -32,6 +33,12 @@ const model = {
     },
 
     setCurrentSongId(songId){
+
+        // Save current song as last song before updating
+        const lastSongId = this.currentSongId;
+        this.lastSongId = lastSongId; //Store last song's Id
+
+
         console.log('Setting songID', songId);
         if(songId && this.currentSongId != songId ) {
             resolvePromise(getSongDetails(songId),this.currentSongPromiseState);
@@ -41,9 +48,9 @@ const model = {
         
     },
 
-    setPreferredLanguage(lang) {
-        this.lang = lang;
-      }
+    setPreferredLanguage(language) {
+        this.lang = language;
+      },
 };
 
 export {model};

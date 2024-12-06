@@ -33,7 +33,9 @@ const rf= ref(db, REF);
 
  function modelToPersistence(model){
   return {
-    currentSongId: model.currentSongId
+    currentSongId: model.currentSongId,
+    lastSongId: model.lastSongId,
+    preferredLanguage: model.lang || "en",
   };
 }
 
@@ -44,9 +46,11 @@ const rf= ref(db, REF);
   console.log('model', model);
 
   if (!dataFromPersistence) {
-    dataFromPersistence = {songId: undefined};
+    dataFromPersistence = {songId: undefined, preferredLanguage: "en" };
   } else {
     model.setCurrentSongId(dataFromPersistence.currentSongId)
+    model.lastSongId = dataFromPersistence.lastSongId;
+    model.setPreferredLanguage(dataFromPersistence.preferredLanguage || "en");
   }
 }
 
@@ -75,7 +79,7 @@ function readFromFirebase(model){
 
   
   function isChangeImportantACB(){
-    return [model.currentSongId];
+    return [model.currentSongId, model.lang];
   }
 
   function saveChangesACB(){

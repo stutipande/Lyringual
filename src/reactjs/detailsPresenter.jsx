@@ -7,7 +7,6 @@ function DetailsRender(props) {
   const currentSongPromiseState = props.model.currentSongPromiseState;
 
 
-
   function renderDetails(promiseState) {
     console.log(promiseState);
     // No promise

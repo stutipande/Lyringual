@@ -37,6 +37,10 @@ const model = {
         
     },
 
+    setPreferredLanguage(lang) {
+        this.lang = lang;
+      },
+
 };
 
 export {model};
