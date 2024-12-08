@@ -13,6 +13,7 @@ const model = {
     searchResultsPromiseState: {},
     currentSongPromiseState: {},
     clientId: null,
+    previousLang: null,
     lang: "en",
 
 
@@ -40,10 +41,10 @@ const model = {
 
 
         console.log('Setting songID', songId);
-        if(songId && this.currentSongId != songId ) {
-            resolvePromise(getSongDetails(songId),this.currentSongPromiseState);
+        if(songId && this.currentSongId != songId || this.lang != this.previousLang) {
+            resolvePromise(getSongDetails(songId, this.lang),this.currentSongPromiseState);
         }
-
+        this.previousLang = this.lang;
         this.currentSongId = songId;
         
     },

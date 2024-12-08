@@ -118,7 +118,7 @@ export function searchSongs(searchParams, type) {
 }
 
 
-export async function getSongTranslation(original, lang = "fr") {
+export async function getSongTranslation(original, lang) {
     console.log('Translating..');
 
     const url = `https://translation.googleapis.com/language/translate/v2?key=${G_API_KEY}`;
@@ -151,7 +151,7 @@ export async function getSongTranslation(original, lang = "fr") {
 
 
 
-export function getSongDetails(id) {
+export function getSongDetails(id, lang) {
 
     console.log('Getting lyrics..')
 
@@ -166,7 +166,7 @@ export function getSongDetails(id) {
 
     try {
         return fetch(url, options).then(processSongDetailsACB)
-        .then(getSongTranslation)
+        .then((result) => getSongTranslation(result,lang))
         .catch((error) => {
             console.error("Error fetching or processing song details:", error);
         });

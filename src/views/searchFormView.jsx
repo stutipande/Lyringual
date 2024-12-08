@@ -50,7 +50,7 @@
                 onChange={handleLanguageChange}
                 >
                 <option value="en">English</option>
-                <option value="se">Swedish</option>
+                <option value="sv">Swedish</option>
                 <option value="es">Spanish</option>
                 <option value="fr">French</option>
 </select>
