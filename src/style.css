@@ -151,7 +151,35 @@
   .lyrics li {
     text-align: left;
     line-height: 1.5em;
-    overflow-wrap: normal;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+
+  .testDiv {
+    margin-top: 2em;
+    align-self: flex-start;
+    padding-left: 0px;
+    padding-right: 20px;
+    width: 50%;
+  }
+
+  .testInput {
+    height: 1.5em;
+    border: none;
+    border-bottom: 1px solid white;
+    border-radius: 0;
+    display: inline-block;
+    background: none;
+    font-family: var(--header-font);
+    font-size: 20pt;
+    outline: none;
+    box-shadow: none;
+    padding: 0;
+    margin-bottom: -1px;
+  }
+
+  .correct {
+    color: greenyellow;
   }
 
 /* A debug class, used to separate components graphically during development */
@@ -195,6 +223,10 @@
 
 .topLeftButton{
   float: left;
+}
+
+.topRightButton {
+  float: right;
 }
 }
 

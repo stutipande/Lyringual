@@ -15,7 +15,34 @@ const model = {
     clientId: null,
     previousLang: null,
     lang: "en",
+    testActivated: null,
+    testResults: [],
+    originalLyric: null,
 
+    setTranslationTip(index) {
+        this.originalLyric = this.currentSongPromiseState.data[0][index];
+        this.currentSongPromiseState.data[0][index] = this.currentSongPromiseState.data[1][index];
+        this.currentSongPromiseState.data = [...this.currentSongPromiseState.data];
+    },
+
+    removeTranslationTip(index) {
+        this.currentSongPromiseState.data[0][index] = this.originalLyric;
+        this.currentSongPromiseState.data = [...this.currentSongPromiseState.data];
+    },
+
+    startTest() {
+        this.testActivated = true;
+    },
+
+    stopTest() {
+        this.testActivated = false;
+    },
+
+    setTestResult(index, correct) {
+        console.log('Setting', index, 'to', correct);
+        this.testResults[index] = correct;
+        this.testResults = [...this.testResults];
+    },
 
     setClientId() {
         resolvePromise(getClientId(), this.searchResultsPromiseState);

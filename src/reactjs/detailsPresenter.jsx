@@ -3,9 +3,45 @@ import { observer } from "mobx-react-lite";
 
 const Details = observer( 
 function DetailsRender(props) {
-  console.log("detailsProps: ", props)
   const currentSongPromiseState = props.model.currentSongPromiseState;
 
+  function startTest() {
+
+    props.model.startTest();  
+
+  }
+
+  function stopTest() {
+
+    props.model.stopTest();  
+
+  }
+
+  function normalizeString(str) {
+    if (!str) return "";
+    const lowerCaseStr = str.toLowerCase();
+    const normalizedStr = lowerCaseStr.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    
+    return normalizedStr;
+}
+
+
+  function checkTest(lyric, index, value) {
+    console.log('Do some model stuff..', lyric);
+    const correctTranslation = (normalizeString(lyric) === normalizeString(value));
+    props.model.setTestResult(index, correctTranslation);
+  }
+
+  function getTranslationTip(i) {
+    props.model.setTranslationTip(i);
+  }
+
+  function removeTranslationTip(i) {
+    props.model.removeTranslationTip(i);
+  }
+
+  const testActivated = props.model.testActivated; 
+  const testResults = props.model.testResults;  
 
   function renderDetails(promiseState) {
     console.log(promiseState);
@@ -29,6 +65,13 @@ function DetailsRender(props) {
       return (
         <DetailsView
           lyricData = {promiseState.data}
+          testActivated = {testActivated}
+          testResults = {testResults}
+          onStartTest={startTest}  
+          onStopTest={stopTest}  
+          onCheckTest={checkTest}
+          onTranslationTip={getTranslationTip}
+          onRemoveTranslationTip={removeTranslationTip}
         />
       );
     }
