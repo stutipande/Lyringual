@@ -1,5 +1,11 @@
-# npm-tutorial
-tutorial version 5
+# Lyringual
+With this app you can learn new languages by translating your favourite songs!
+
+Browse through a huge library of song lyrics and pick which language you want to learn, then you can practice and self-test your progress!
+
+To do:
+Add user login
+Add gamification elements
 
 1. install node, recent version (e.g. 17)
 
