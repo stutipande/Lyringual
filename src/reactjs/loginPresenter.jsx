@@ -9,7 +9,7 @@ const Login = observer(
     
 
     function LoginRender(model){
-        function loggaIn(){/*här är användare inloggad*/window.location.hash="#/search"};
+        function loggaIn(){/*här är användare inloggad*/window.location.hash="#/dashboard"};
         function nor(error){alert(error.message)};
         function loginACB(e,p){signInWithEmailAndPassword(auth, e,p).then(loggaIn).catch(nor);};//might move to firebasemodel and same for following function
         function signUpACB(e,p){createUserWithEmailAndPassword(auth,e,p).then(loggaIn).catch(nor);};

@@ -3,6 +3,7 @@ import { Sidebar } from "./sidebarPresenter.jsx";
 import { Search } from "./searchPresenter.jsx";
 import { Details } from "./detailsPresenter.jsx";
 import { Login } from "./loginPresenter.jsx";
+import { Dashboard } from "./dashboardPresenter.jsx";
 import { observer } from "mobx-react-lite";
 import {  createHashRouter,  RouterProvider, useParams} from "react-router-dom";
 
@@ -26,6 +27,11 @@ function makeRouter(model){
     {
         path: "/login",
         element: <Login model={model} />,
+    },
+
+    {
+        path: "/dashboard",
+        element: <Dashboard model={model} />,
     },
 ])
 }
