@@ -68,7 +68,7 @@ export function DetailsView(props) {
             </ul>
             }
             {props.testActivated &&
-            <div class="testDiv">
+            <div className="testDiv">
                 {props.lyricData[1].map(renderTestCB)}
             </div>
             }           

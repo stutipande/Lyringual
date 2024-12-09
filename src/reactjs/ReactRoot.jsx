@@ -39,8 +39,8 @@ function makeRouter(model){
 const ReactRoot = observer(
 function ReactRoot(props){
     return (props.model.ready ?
-            <div class="flexParent">
-                <div class="mainContent">
+            <div className="flexParent">
+                <div className="mainContent">
                     <RouterProvider router={makeRouter(props.model)} />
                 </div>
             </div>
