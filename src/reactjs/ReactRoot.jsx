@@ -13,7 +13,7 @@ function makeRouter(model){
     return createHashRouter([
     {
         path: "/",
-        element: <Search model={model} />,
+        element: <Login model={model} />,
     },
     {
         path: "/search",
