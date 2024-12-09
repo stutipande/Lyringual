@@ -1,5 +1,4 @@
 import { Summary } from "./summaryPresenter.jsx";
-import { Sidebar } from "./sidebarPresenter.jsx";
 import { Search } from "./searchPresenter.jsx";
 import { Details } from "./detailsPresenter.jsx";
 import { Login } from "./loginPresenter.jsx";
