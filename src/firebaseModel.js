@@ -7,7 +7,9 @@ import {firebaseConfig} from "/src/firebaseConfig.js";
 
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
+
+
 
 
 // Initialise firebase app, database, ref
