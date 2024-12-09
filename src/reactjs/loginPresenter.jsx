@@ -1,9 +1,8 @@
 import { LoginView } from "../views/loginView.jsx";
 import { observer } from "mobx-react-lite";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
-import {app} from "../firebaseModel.js"
+import {auth} from "../firebaseModel.js"
 
-const auth = getAuth(app);//might move to firebasemodel instead
 
 const Login = observer(            
 

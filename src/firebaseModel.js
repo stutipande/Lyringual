@@ -1,5 +1,8 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, get, set} from "/src/teacherFirebase.js";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut} from "firebase/auth"; //this is here only to keeps track of functions
+
+//chanses are that simply having a button with the signout function above and changing the page back to login would work as logout
 
 // Add relevant imports here 
 // TODO
@@ -7,7 +10,9 @@ import {firebaseConfig} from "/src/firebaseConfig.js";
 
 
 // Initialize Firebase
-export const app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+
 
 
 
