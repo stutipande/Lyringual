@@ -12,7 +12,7 @@ export function LoginView(props, props2/*temp all*/,usernameV, passwordV, loginA
     
     <div className="onTopOfEachOther">
         
-        <label>username:</label>
+        <label>mail:</label>
         <input 
 
             type="text"
