@@ -30,23 +30,23 @@
     return (
         <div>
             <form onSubmit={handleSearch}>
-            <input
-                type="text"
-                value={props.text}
-                onChange={handleTextChange} 
-            />
-            <select
-                value={props.type} 
-                onChange={handleTypeChange}
-            >
-                <option value="">Choose:</option>
-                {renderSearchTypeOptions()}
-            </select>
-            <button type = "submit">Search!</button><br></br>
+                <input
+                    type="text"
+                    value={props.text}
+                    onChange={handleTextChange} 
+                />
+                <select
+                    value={props.type} 
+                    onChange={handleTypeChange}
+                >
+                    <option value="">Choose:</option>
+                    {renderSearchTypeOptions()}
+                </select>
+                <button type = "submit">Search!</button><br></br>
             </form> 
 
             <select
-                value={props.lang}
+                defaultValue={props.lang}
                 onChange={handleLanguageChange}
                 >
                 <option value="en">English</option>

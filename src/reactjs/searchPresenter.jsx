@@ -67,6 +67,7 @@ function SearchRender(props) {
                 onSearchSong={searchNowACB} 
                 onLanguageChange = {setPreferredLanguageACB}
                 lastSongId={props.model.lastSongId} 
+                lang={props.model.lang} 
 
             />
 
