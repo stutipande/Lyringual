@@ -1,9 +1,9 @@
-import { Summary } from "./summaryPresenter.jsx";
 import { Search } from "./searchPresenter.jsx";
 import { Details } from "./detailsPresenter.jsx";
 import { Login } from "./loginPresenter.jsx";
 import { Dashboard } from "./dashboardPresenter.jsx";
 import { observer } from "mobx-react-lite";
+import "/src/style.css"
 import {  createHashRouter,  RouterProvider, useParams} from "react-router-dom";
 
 function makeRouter(model){

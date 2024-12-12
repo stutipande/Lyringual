@@ -1,4 +1,3 @@
-//import "/src/teacherFetch.js"; // protection against fetch() in infinite re-render
 import { createElement } from "react";
 import { createRoot } from "react-dom/client";
 import "/src/firebaseModel.js";
