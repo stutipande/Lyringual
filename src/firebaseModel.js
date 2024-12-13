@@ -43,6 +43,7 @@ const PATH="dinnerModel125/";
     currentSongId: model.currentSongId,
     lastSongId: model.lastSongId,
     preferredLanguage: model.lang || "en",
+    xp: model.XP || 0
   };
 }
 
@@ -58,6 +59,7 @@ const PATH="dinnerModel125/";
     model.setCurrentSongId(dataFromPersistence.currentSongId)
     model.lastSongId = dataFromPersistence.lastSongId;
     model.setPreferredLanguage(dataFromPersistence.preferredLanguage || "en");
+    model.setXP(dataFromPersistence.xp || "0");
   }
 }
 
@@ -72,8 +74,9 @@ const PATH="dinnerModel125/";
 }
 
 function readFromFirebase(model){
+  console.log("user:", model.user)
+  console.log("userUID:", model.user.uid);
   if (model.user){
-    console.log(model.user)
   model.ready=false;
   return get(ref(db, PATH+model.user.uid))
             .then(function convertACB(snapshot){
@@ -91,7 +94,7 @@ function readFromFirebase(model){
 
   function loginOrOutACB(user){
 
-    model.user= user;
+    model.setUser(user);
     console.log(model.user)
     if(model.user != null){
     }

@@ -19,6 +19,21 @@ const model = {
     testActivated: null,
     testResults: [],
     originalLyric: null,
+    XP: 0,
+
+    setUser(user) {
+        console.log('Setting user to', user.uid)
+        this.user = user;
+    },
+
+    setXP(xp) {
+        this.XP = xp;
+    },
+
+    incrementXP() {
+        console.log('Incrementing XP to', this.XP + 1)
+        this.XP += 1;
+    },
 
     setTranslationTip(index) {
         this.originalLyric = this.currentSongPromiseState.data[0][index];
