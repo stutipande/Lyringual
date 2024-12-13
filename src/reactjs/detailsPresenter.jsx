@@ -1,5 +1,6 @@
 import { DetailsView } from '../views/detailsView.jsx';
 import { observer } from "mobx-react-lite";
+import {saveToFirebase} from "../firebaseModel.js";
 
 const Details = observer( 
 function DetailsRender(props) {
@@ -27,8 +28,15 @@ function DetailsRender(props) {
 
 
   function checkTest(lyric, index, value) {
-    const correctTranslation = (normalizeString(lyric) === normalizeString(value));
-    props.model.setTestResult(index, correctTranslation);
+    const correctTranslation = (normalizeString(lyric.substring(0, value.length)) === normalizeString(value));
+    if ((normalizeString(lyric)) === normalizeString(value)) {
+      props.model.incrementXP();
+      saveToFirebase(props.model);
+      props.model.setTestResult(index, "completed");
+    } else {
+      props.model.setTestResult(index, correctTranslation);
+    }
+    
   }
 
   function getTranslationTip(i) {
