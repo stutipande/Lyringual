@@ -10,7 +10,6 @@ function SearchRender(props) {
 
     // Custom Event Handlers
     function handleTextChange(text) {
-        console.log(text);
         props.model.setSearchQuery(text); 
     }
 

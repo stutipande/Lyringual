@@ -22,7 +22,6 @@ export function parseResultsACB(result) {
 }
 
 export async function processSongDetailsACB(result) {
-    console.log(result);
     const reader = result.body.getReader();
     const decoder = new TextDecoder();    
     let text = '';                        
@@ -34,7 +33,6 @@ export async function processSongDetailsACB(result) {
         }
         text += decoder.decode(value, { stream: true }); 
     }
-    console.log(text);
 
 
     const matches = text.match(/document\.write\((JSON\.parse\(.*?\))\)/);
@@ -52,12 +50,10 @@ export async function processSongDetailsACB(result) {
             .replace(/\\\\/g, "\\")
             .replace(/\\"/g, '"')
             .replace(/\\'/g, "'"); 
-
-        console.log(rawJsonString);
             
         rawJsonString = JSON.parse(rawJsonString);
 
-        console.log('Extracted JSON:', rawJsonString);
+        //console.log('Extracted JSON:', rawJsonString);
 
     } else {
         console.log('No JSON.parse content found.');

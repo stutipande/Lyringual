@@ -27,7 +27,6 @@ function DetailsRender(props) {
 
 
   function checkTest(lyric, index, value) {
-    console.log('Do some model stuff..', lyric);
     const correctTranslation = (normalizeString(lyric) === normalizeString(value));
     props.model.setTestResult(index, correctTranslation);
   }
@@ -44,7 +43,6 @@ function DetailsRender(props) {
   const testResults = props.model.testResults;  
 
   function renderDetails(promiseState) {
-    console.log(promiseState);
     // No promise
     if (!promiseState.promise) {
       return <div>No data</div>;

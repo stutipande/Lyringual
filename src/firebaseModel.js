@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, get, set} from "/src/teacherFirebase.js";
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut} from "firebase/auth"; //this is here only to keeps track of functions
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged} from "firebase/auth"; //this is here only to keeps track of functions
 
 //chanses are that simply having a button with the signout function above and changing the page back to login would work as logout
 
@@ -21,11 +21,11 @@ export const auth = getAuth(app);
 // TODO
 /*  PATH is the “root” Firebase path. NN is your TW2_TW3 group number */
 const db= getDatabase(app);
-const PATH="dinnerModel125";
+const PATH="dinnerModel125/";
 // set(ref(db, PATH+"/test"), "dummy");
 
-const REF= PATH+"/test";
-const rf= ref(db, REF);
+//const REF= PATH+"/test";
+//const rf= ref(db, REF);
 
 
 // set(
@@ -63,37 +63,48 @@ const rf= ref(db, REF);
 
 
  function saveToFirebase(model){
-    if (model.ready) {
+    if (model.ready && model.user) {
       set(
-        ref(db, PATH+"/test"), 
+        ref(db, PATH+model.user.uid), 
         modelToPersistence(model)
       );
     }
 }
 
 function readFromFirebase(model){
+  if (model.user){
+    console.log(model.user)
   model.ready=false;
-  return get(rf)
+  return get(ref(db, PATH+model.user.uid))
             .then(function convertACB(snapshot){
                    return persistenceToModel(snapshot.val(), model);
              })
             .then(function setModelReadyACB(){
                         model.ready=true;
-            })           
+            })       
+  }    
 }
 
  function connectToFirebase(model, watchFunction){
 
-  
+  onAuthStateChanged(auth, loginOrOutACB);
+
+  function loginOrOutACB(user){
+
+    model.user= user;
+    console.log(model.user)
+    if(model.user != null){
+    }
+  }
+
   function isChangeImportantACB(){
     return [model.currentSongId, model.lang];
   }
 
   function saveChangesACB(){
     saveToFirebase(model);
-
   }
-  readFromFirebase(model).then(() => watchFunction(isChangeImportantACB,saveChangesACB));
 
+  readFromFirebase(model).then(() => watchFunction(isChangeImportantACB,saveChangesACB));
 }
 export { connectToFirebase, modelToPersistence, persistenceToModel, saveToFirebase, readFromFirebase}

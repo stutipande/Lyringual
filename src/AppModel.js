@@ -13,6 +13,7 @@ const model = {
     searchResultsPromiseState: {},
     currentSongPromiseState: {},
     clientId: null,
+    user: {},
     previousLang: null,
     lang: "en",
     testActivated: null,

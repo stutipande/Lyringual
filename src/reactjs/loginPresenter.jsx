@@ -9,10 +9,10 @@ const Login = observer(
     
 
     function LoginRender(model){
-        function loggaIn(){/*här är användare inloggad*/window.location.hash="#/dashboard"};
+        function logIn(){/*här är användare inloggad*/window.location.hash="#/dashboard"};
         function nor(error){alert(error.message)};
-        function loginACB(e,p){signInWithEmailAndPassword(auth, e,p).then(loggaIn).catch(nor);};//might move to firebasemodel and same for following function
-        function signUpACB(e,p){createUserWithEmailAndPassword(auth,e,p).then(loggaIn).catch(nor);};
+        function loginACB(e,p){signInWithEmailAndPassword(auth, e,p).then(logIn).catch(nor);};//might move to firebasemodel and same for following function
+        function signUpACB(e,p){createUserWithEmailAndPassword(auth,e,p).then(logIn).catch(nor);};
         
 
         return <LoginView /* mayhaps the functions? */ usernameV="" passwordV="" loginACB={loginACB} signUpACB={signUpACB}/>;
