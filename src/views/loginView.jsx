@@ -11,6 +11,8 @@ export function LoginView(props, props2/*temp all*/,usernameV, passwordV, loginA
        
     
     <div className="onTopOfEachOther">
+
+        <h1 className="logo">Lyringual.</h1>
         
         <label>mail:</label>
         <input 
