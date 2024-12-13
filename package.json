@@ -31,6 +31,7 @@
         "mobx-react-lite": "^3.4.2",
         "parse-git-config": "^3.0.0",
         "react": "^18.0.0",
+        "react-confetti-explosion": "^2.1.2",
         "react-dom": "^18.0.0",
         "react-router-dom": "^6.8.1",
         "solid-js": "^1.6.10",

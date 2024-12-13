@@ -1,4 +1,6 @@
 import React, { useRef } from "react";
+import ConfettiExplosion from 'react-confetti-explosion';
+
 
 export function DetailsView(props) {
 
@@ -31,6 +33,7 @@ export function DetailsView(props) {
         setAutoFocus = false;
 
         return (
+            <>
             <input
                 ref={(el) => (inputRefs.current[index] = el)} 
                 autoFocus={thisSetFocus ? true : false}
@@ -40,6 +43,8 @@ export function DetailsView(props) {
                 style={{ display: "block" }}
                 key={index}
             ></input>
+            {props.testResults[index] == 'completed' && <ConfettiExplosion />}
+            </>
         );
     }
 
