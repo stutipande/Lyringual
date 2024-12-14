@@ -13,7 +13,10 @@ const model = {
     searchResultsPromiseState: {},
     currentSongPromiseState: {},
     clientId: null,
-    user: {},
+    user: {
+        uid:null,
+        email: null,
+    },
     previousLang: null,
     lang: "en",
     testActivated: null,
@@ -22,8 +25,10 @@ const model = {
     XP: 0,
 
     setUser(user) {
-        console.log('Setting user to', user.uid)
-        this.user = user;
+        this.user = {
+            uid: user.uid,
+            email: user.email,
+        };
     },
 
     setXP(xp) {
@@ -95,6 +100,15 @@ const model = {
     setPreferredLanguage(language) {
         this.lang = language;
       },
+
+
+getDashboardData() {
+    return {
+        email: this.user.email,
+        XP: this.XP,
+    };
+},
+
 };
 
 export {model};

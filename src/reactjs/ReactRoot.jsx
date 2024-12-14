@@ -3,6 +3,7 @@ import { Details } from "./detailsPresenter.jsx";
 import { Login } from "./loginPresenter.jsx";
 import { Dashboard } from "./dashboardPresenter.jsx";
 import { observer } from "mobx-react-lite";
+import { UserIcon } from "../userIcon.jsx";
 import "/src/style.css"
 import {  createHashRouter,  RouterProvider, useParams} from "react-router-dom";
 
@@ -39,6 +40,7 @@ const ReactRoot = observer(
 function ReactRoot(props){
     return (props.model.ready ?
             <div className="flexParent">
+                <header className="header"> <UserIcon /> </header>
                 <div className="mainContent">
                     <RouterProvider router={makeRouter(props.model)} />
                 </div>
