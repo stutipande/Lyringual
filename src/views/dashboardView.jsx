@@ -9,7 +9,8 @@ export function DashboardView({ user, onLogout }) {
   return (
     <div className="dashboard">
       <h1>Welcome, {user.email}</h1>
-      <p>Email: {user.email}</p>
+
+      <p> Learn new languages by translating your favourite songs!</p>
     
 
     
