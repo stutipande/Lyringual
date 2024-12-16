@@ -9,14 +9,16 @@ export function UserIcon() {
 
     // Navigate to the dashboard
     function handleClick() {
-        
+        if(user?.auth.currentUser!=null){
         window.location.hash = "#/dashboard" ; //should work, if i does not w could look at what auth is.
+        console.log(user.auth.currentUser)
+        }
         
-        /*
         else
         {
             window.location.hash = "#/login"
-        }*///perhaps not
+        } //perhaps not
+            
     }
 
     return (

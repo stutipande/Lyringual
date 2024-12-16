@@ -43,7 +43,8 @@ export function DetailsView(props) {
                 style={{ display: "block" }}
                 key={index}
             ></input>
-            {props.testResults[index] == 'completed' && <ConfettiExplosion />}
+            {props.testResults[index] == 'completed' && <ConfettiExplosion />
+            }
             </>
         );
     }
