@@ -19,7 +19,7 @@ export function LoginView(props, props2/*temp all*/,usernameV, passwordV, loginA
 
             type="text"
             value={usernameV}
-            placeholder="username"
+            placeholder="mail"
             onChange={username}
 
            />
