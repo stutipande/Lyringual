@@ -2,6 +2,7 @@ import { createElement } from "react";
 import { createRoot } from "react-dom/client";
 import "/src/firebaseModel.js";
 import { connectToFirebase } from "../firebaseModel";
+import { getAuth } from "firebase/auth";
 
 window.React={createElement:createElement} 
 
@@ -40,9 +41,7 @@ createRoot(document.getElementById("root")).render(rootJSX);
 // ------ for debug purposes, do not do this in production! ----------
 // making the model available at the console
 window.myModel= reactiveModel;
-// making some example dishes available at the console:
-// import dishesConst from "/test/dishesConst.js";
-// window.dishesConst= dishesConst;
+
 connectToFirebase(reactiveModel, reaction);
 
 

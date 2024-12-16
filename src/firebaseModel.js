@@ -91,12 +91,17 @@ function readFromFirebase(model){
  function connectToFirebase(model, watchFunction){
 
   onAuthStateChanged(auth, loginOrOutACB);
+  if(model.user == null){
+    model.setUser(getAuth(app));
+  }
 
   function loginOrOutACB(user){
-
+    if(model.user == null){
     model.setUser(user);
-    console.log(model.user)
+    }
     if(model.user != null){
+      model.user.uid = null;
+      model.user.email = null;
     }
   }
 

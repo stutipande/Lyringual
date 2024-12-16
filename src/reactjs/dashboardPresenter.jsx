@@ -17,7 +17,7 @@ const Dashboard = observer(function DashboardRender() {
   }
 
   if (!user) {
-    return <div>Please log in to view your dashboard.</div>;
+    window.location.hash = "#/login";
   }
 
   return <DashboardView user={user} onLogout={logout} />;
