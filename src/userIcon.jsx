@@ -9,7 +9,13 @@ export function UserIcon() {
 
     // Navigate to the dashboard
     function handleClick() {
-        window.location.hash = "#/dashboard";
+        if(auth!=null){
+        window.location.hash = "#/dashboard" ; //should work, if i does not w could look at what auth is.
+        }
+        else
+        {
+            window.location.hash = "#/login"
+        }
     }
 
     return (
