@@ -54,16 +54,12 @@ const PATH="dinnerModel125/";
   console.log('dataFromPersistence', dataFromPersistence);
   console.log('model', model);
 
-  if (!dataFromPersistence) {
-    dataFromPersistence = {songId: undefined, preferredLanguage: "en" };
-  } else {
     // model.setCurrentSongId(dataFromPersistence.currentSongId)
-    model.lastSongId = dataFromPersistence.lastSongId;
-    model.setPreferredLanguage(dataFromPersistence.preferredLanguage || "en");
-    model.setXP(dataFromPersistence.xp || {});
+    // model.lastSongId = dataFromPersistence.lastSongId;
+    model.setPreferredLanguage(dataFromPersistence?.preferredLanguage || "en");
+    model.setXP(dataFromPersistence?.xp || {});
     model.setSearchQuery(dataFromPersistence?.searchParams?.query || "Like a prayer");
     model.setSearchType(dataFromPersistence?.searchParams?.type || "title");
-  }
 }
 
 
