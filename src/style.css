@@ -51,6 +51,11 @@
     padding: 10px 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
+header select {
+  font-size: 24pt;
+  width: 64pt;
+}
   
   body {
     background-color: var(--background-color);
@@ -109,7 +114,7 @@
     margin-bottom: var(--spacing-large);
   }
 
-  .song {
+  .song, .progression {
     display: inline-block;
     height: 180px;
     width: 250px;
@@ -123,14 +128,14 @@
     border-radius: var(--border-radius);
   }
 
-  .song:hover {
+  .song:hover, .progression:hover {
 
     background-color: var(--hover-color);
     transition: 0.2s all;
 
   }
 
-  .searchResult {
+  .searchResult, .progressionBox {
     display: flex;
     flex-wrap: wrap; /* Wrap to the next row if cards don't fit in one line */
     gap: 16px;       /* Space between cards */
@@ -301,4 +306,62 @@ h1.logo {
   margin: auto;
   vertical-align: middle;
   display: flex;
+}
+
+/* Style for the select dropdown */
+select {
+  background-color: var(--foreground-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-small) var(--spacing-medium);
+  font-size: 1rem;
+  width: 100%;
+  cursor: pointer;
+  box-shadow: 0 2px 4px var(--box-shadow-color);
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Style the select dropdown when focused */
+select:focus {
+  border-color: var(--primary-color);
+  background-color: var(--hover-color);
+  outline: none;
+}
+
+/* Style the options in the dropdown */
+select option {
+  background-color: var(--foreground-color);
+  color: var(--text-color);
+  padding: var(--spacing-small);
+  border: none;
+  font-size: 1rem;
+}
+
+select option:hover {
+  background-color: var(--primary-color);
+  color: var(--foreground-color);
+}
+
+select:focus, select:hover {
+  background-color: var(--hover-color);
+  border-color: var(--primary-color);
+}
+
+select:disabled {
+  background-color: var(--background-color);
+  color: var(--muted-text-color);
+  cursor: not-allowed;
+}
+
+#searchForm * {
+  max-width: 40%;
+  margin: 10px;
+}
+
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
