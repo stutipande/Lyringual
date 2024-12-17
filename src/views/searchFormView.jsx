@@ -17,18 +17,13 @@
     function handleSearch (){
         props.onSearchSong();
     }
-  
-    function handleLanguageChange(evt){
-        (props.onLanguageChange(evt.target.value));
-            
-    }
 
     // Display last song
     const lastSong = props.lastSongId ? props.lastSongId : "No previous song";  
 
 
     return (
-        <div>
+        <div id="searchForm">
             <form onSubmit={handleSearch}>
                 <input
                     type="text"
@@ -43,21 +38,7 @@
                     {renderSearchTypeOptions()}
                 </select>
                 <button type = "submit">Search!</button><br></br>
-            </form> 
-
-            <select
-                defaultValue={props.lang}
-                onChange={handleLanguageChange}
-                >
-                <option value="en">English</option>
-                <option value="sv">Swedish</option>
-                <option value="es">Spanish</option>
-                <option value="fr">French</option>
-</select>
-
-        <div>   
-            <p>Last Song: {lastSong} </p>
-        </div>
+            </form>
 
 
             

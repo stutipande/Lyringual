@@ -37,11 +37,85 @@ function makeRouter(model){
 ])
 }
 
+
+
 const ReactRoot = observer(
 function ReactRoot(props){
+    function handleLanguageChange(evt){
+        (props.model.setPreferredLanguage(evt.target.value));
+            
+    }
     return (props.model.ready ?
             <div className="flexParent">
-                <header className="header"> <UserIcon /> </header>
+                <header className="header">
+                    <UserIcon />
+                    <h2 className="logo">Lyringual.</h2>
+                <select
+                defaultValue={props.model.lang}
+                onChange={handleLanguageChange}
+                >
+                    <option value="en">
+                        🇺🇸
+                    </option>
+                    <option value="es">
+                        🇪🇸
+                    </option>
+                    <option value="fr">
+                        🇫🇷
+                    </option>
+                    <option value="de">
+                        🇩🇪
+                    </option>
+                    <option value="it">
+                        🇮🇹
+                    </option>
+                    <option value="pt">
+                        🇵🇹
+                    </option>
+                    <option value="nl">
+                        🇳🇱
+                    </option>
+                    <option value="ru">
+                        🇷🇺
+                    </option>
+                    <option value="ja">
+                        🇯🇵
+                    </option>
+                    <option value="ko">
+                        🇰🇷
+                    </option>
+                    <option value="zh">
+                        🇨🇳
+                    </option>
+                    <option value="ar">
+                        🇸🇦
+                    </option>
+                    <option value="hi">
+                        🇮🇳
+                    </option>
+                    <option value="tr">
+                        🇹🇷
+                    </option>
+                    <option value="pl">
+                        🇵🇱
+                    </option>
+                    <option value="sv">
+                        🇸🇪
+                    </option>
+                    <option value="da">
+                        🇩🇰
+                    </option>
+                    <option value="no">
+                        🇳🇴
+                    </option>
+                    <option value="fi">
+                        🇫🇮
+                    </option>
+                    <option value="el">
+                        🇬🇷
+                    </option>
+                </select>
+                </header>
                 <div className="mainContent">
                     <RouterProvider router={makeRouter(props.model)} />
                 </div>
