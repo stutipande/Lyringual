@@ -57,6 +57,7 @@ const model = {
 
     stopTest() {
         this.testActivated = false;
+        this.testResults = [];
     },
 
     setTestResult(index, correct) {
