@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import ConfettiExplosion from 'react-confetti-explosion';
 
 
@@ -72,6 +72,12 @@ export function DetailsView(props) {
         const doc = parser.parseFromString(text, "text/html");
         return doc.documentElement.textContent;
     }
+
+    useEffect(() => {
+        return () => {
+            props.onStopTest();
+        };
+      }, []);
 
     return (
         <div>
