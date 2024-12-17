@@ -22,7 +22,7 @@ const model = {
     testActivated: null,
     testResults: [],
     originalLyric: null,
-    XP: 0,
+    XP: {},
 
     setUser(user) {
         this.user = {
@@ -32,11 +32,12 @@ const model = {
     },
 
     setXP(xp) {
-        this.XP = parseInt(xp);
+        this.XP = xp;
     },
 
     incrementXP() {
-        this.XP = parseInt(this.XP) + 1;
+        this.XP[this.lang] = parseInt(this.XP[this.lang] ? this.XP[this.lang] : 0) + 1;
+        this.XP = {...this.XP};
     },
 
     setTranslationTip(index) {
@@ -70,13 +71,16 @@ const model = {
 
     setSearchQuery(query) {
         this.searchParams.query = query;
+        this.searchParams = {...this.searchParams};
     },
 
     setSearchType(type) {
         this.searchParams.type = type;
+        this.searchParams = {...this.searchParams};
     },
 
     doSearch() {
+        console.log('Searching like crazy!');
         resolvePromise(searchSongs(this.searchParams.query, this.searchParams.type),this.searchResultsPromiseState);
     },
 

@@ -43,7 +43,8 @@ const PATH="dinnerModel125/";
     currentSongId: model.currentSongId,
     lastSongId: model.lastSongId,
     preferredLanguage: model.lang || "en",
-    xp: model.XP || 0
+    xp: model.XP || 0,
+    searchParams: model.searchParams || null
   };
 }
 
@@ -56,10 +57,12 @@ const PATH="dinnerModel125/";
   if (!dataFromPersistence) {
     dataFromPersistence = {songId: undefined, preferredLanguage: "en" };
   } else {
-    model.setCurrentSongId(dataFromPersistence.currentSongId)
+    // model.setCurrentSongId(dataFromPersistence.currentSongId)
     model.lastSongId = dataFromPersistence.lastSongId;
     model.setPreferredLanguage(dataFromPersistence.preferredLanguage || "en");
-    model.setXP(dataFromPersistence.xp || "0");
+    model.setXP(dataFromPersistence.xp || {});
+    model.setSearchQuery(dataFromPersistence?.searchParams?.query || "Like a prayer");
+    model.setSearchType(dataFromPersistence?.searchParams?.type || "title");
   }
 }
 
@@ -84,10 +87,11 @@ function readFromFirebase(model){
              })
             .then(function setModelReadyACB(){
                         model.ready=true;
+                        model.doSearch();
             })       
   } else {
     model.ready=true;
-    return;
+    return Promise.resolve();
   }
 }
 
@@ -107,7 +111,7 @@ function readFromFirebase(model){
   }
 
   function isChangeImportantACB(){
-    return [model.currentSongId, model.lang, model.XP];
+    return [model.lang, model.XP, model.searchParams];
   }
 
   function saveChangesACB(){

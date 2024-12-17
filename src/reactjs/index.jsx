@@ -22,9 +22,9 @@ const rootJSX= <ReactRoot model={reactiveModel} />
 // if(!reactiveModel.clientId) {
 //     reactiveModel.setClientId();
 // }
-reactiveModel.setSearchType('title');  
-reactiveModel.setSearchQuery('Like a Prayer');  
-reactiveModel.doSearch();
+// reactiveModel.setSearchType('title');  
+// reactiveModel.setSearchQuery('Like a Prayer');  
+// reactiveModel.doSearch();
 
 createRoot(document.getElementById("root")).render(rootJSX);
 
