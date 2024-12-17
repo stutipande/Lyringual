@@ -76,7 +76,7 @@ const PATH="dinnerModel125/";
 function readFromFirebase(model){
   console.log("user:", model.user)
   console.log("userUID:", model.user.uid);
-  if (model.user){
+  if (model.user.uid){
   model.ready=false;
   return get(ref(db, PATH+model.user.uid))
             .then(function convertACB(snapshot){
@@ -85,7 +85,10 @@ function readFromFirebase(model){
             .then(function setModelReadyACB(){
                         model.ready=true;
             })       
-  }    
+  } else {
+    model.ready=true;
+    return;
+  }
 }
 
  function connectToFirebase(model, watchFunction){
@@ -96,17 +99,15 @@ function readFromFirebase(model){
   }
 
   function loginOrOutACB(user){
-    if(model.user == null){
-    model.setUser(user);
-    }
-    if(model.user != null){
-      model.user.uid = null;
-      model.user.email = null;
+    console.log('user logged in/out:', user);
+    if(user) {
+      model.setUser(user);
+      readFromFirebase(model);
     }
   }
 
   function isChangeImportantACB(){
-    return [model.currentSongId, model.lang];
+    return [model.currentSongId, model.lang, model.XP];
   }
 
   function saveChangesACB(){

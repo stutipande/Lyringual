@@ -4,6 +4,7 @@ import { Login } from "./loginPresenter.jsx";
 import { Dashboard } from "./dashboardPresenter.jsx";
 import { observer } from "mobx-react-lite";
 import { UserIcon } from "../userIcon.jsx";
+import ClockLoader from "react-spinners/ClockLoader";
 import "/src/style.css"
 import {  createHashRouter,  RouterProvider, useParams} from "react-router-dom";
 
@@ -46,8 +47,19 @@ function ReactRoot(props){
                 </div>
             </div>
             :
-            <div>
-                <img src="https://brfenergi.se/iprog/loading.gif" alt="Loading..." />
+            <div class="fullscreen">
+                 <ClockLoader
+                    color={'#03dac6'}
+                    loading={true}
+                    cssOverride={{
+                        display: "block",
+                        margin: "auto auto",
+                        borderColor: "red",
+                      }}
+                    size={50}
+                    aria-label="Loading Spinner"
+                    data-testid="loader"
+                />
             </div>
            );
 }

@@ -32,12 +32,11 @@ const model = {
     },
 
     setXP(xp) {
-        this.XP = xp;
+        this.XP = parseInt(xp);
     },
 
     incrementXP() {
-        console.log('Incrementing XP to', this.XP + 1)
-        this.XP += 1;
+        this.XP = parseInt(this.XP) + 1;
     },
 
     setTranslationTip(index) {

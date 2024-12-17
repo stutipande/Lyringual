@@ -1,6 +1,7 @@
 import { observer } from "mobx-react-lite";
 import { SearchFormView } from '../views/searchFormView.jsx';
 import { SearchResultsView } from '../views/searchResultsView.jsx';
+import { ClockLoader } from "react-spinners";
 
 const Search = observer( 
 function SearchRender(props) {
@@ -41,7 +42,20 @@ function SearchRender(props) {
         }
 
         if (promiseState.promise && !promiseState.data) {
-            return <img src="https://brfenergi.se/iprog/loading.gif" alt="Loading..." />; 
+            return <div class="fullscreen">
+            <ClockLoader
+               color={'#03dac6'}
+               loading={true}
+               cssOverride={{
+                   display: "block",
+                   margin: "auto auto",
+                   borderColor: "red",
+                 }}
+               size={50}
+               aria-label="Loading Spinner"
+               data-testid="loader"
+           />
+       </div>; 
         }
 
         if (promiseState.data) {

@@ -294,3 +294,11 @@
 h1.logo {
   font-size: 42pt;
 }
+
+.fullscreen {
+  height: 100vh;
+  width: 100%;
+  margin: auto;
+  vertical-align: middle;
+  display: flex;
+}

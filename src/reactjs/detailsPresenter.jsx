@@ -1,6 +1,7 @@
 import { DetailsView } from '../views/detailsView.jsx';
 import { observer } from "mobx-react-lite";
 import {saveToFirebase} from "../firebaseModel.js";
+import { ClockLoader } from 'react-spinners';
 
 const Details = observer( 
 function DetailsRender(props) {
@@ -28,6 +29,7 @@ function DetailsRender(props) {
 
 
   function checkTest(lyric, index, value) {
+    console.log(normalizeString(lyric.substring(0, value.length)), normalizeString(value));
     const correctTranslation = (normalizeString(lyric.substring(0, value.length)) === normalizeString(value));
     if ((normalizeString(lyric)) === normalizeString(value)) {
       props.model.incrementXP();
@@ -58,7 +60,20 @@ function DetailsRender(props) {
 
     // Pending promise
     if (!promiseState.data && !promiseState.error) {
-      return <img src="https://brfenergi.se/iprog/loading.gif" alt="Loading..." />;
+      return <div class="fullscreen">
+      <ClockLoader
+         color={'#03dac6'}
+         loading={true}
+         cssOverride={{
+             display: "block",
+             margin: "auto auto",
+             borderColor: "red",
+           }}
+         size={50}
+         aria-label="Loading Spinner"
+         data-testid="loader"
+     />
+ </div>
     }
 
     // Error
