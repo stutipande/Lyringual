@@ -1,0 +1,51 @@
+export function getFlagFromLanguageCode(languageCode) {
+    const languageFlags = {
+      "en": "🇺🇸", 
+      "sv": "🇸🇪", 
+      "es": "🇪🇸", 
+      "fr": "🇫🇷", 
+      "de": "🇩🇪", 
+      "it": "🇮🇹", 
+      "pt": "🇵🇹", 
+      "nl": "🇳🇱", 
+      "ru": "🇷🇺", 
+      "ja": "🇯🇵", 
+      "ko": "🇰🇷", 
+      "zh": "🇨🇳", 
+      "ar": "🇸🇦",
+      "hi": "🇮🇳",
+      "tr": "🇹🇷", 
+      "pl": "🇵🇱",
+      "da": "🇩🇰", 
+      "no": "🇳🇴", 
+      "fi": "🇫🇮", 
+      "el": "🇬🇷"  
+    };
+
+    return languageFlags[languageCode] || "🏳️‍🌈";
+}
+
+export function xpForLevel(level) {
+    if (level <= 1) return 0;
+    return 10 * Math.pow(level - 1, 2); 
+  }
+  
+
+  export function currentLevel(xp) {
+    for (let level = 1; level <= 25; level++) {
+      if (xp < xpForLevel(level + 1)) {
+        return level;
+      }
+    }
+    return 25;
+  }
+  
+  export function currentLevelXP(xp) {
+    const level = currentLevel(xp);
+    return xpForLevel(level);
+  }
+  
+  export function nextLevelXP(xp) {
+    const level = currentLevel(xp) + 1; 
+    return xpForLevel(level);
+  }

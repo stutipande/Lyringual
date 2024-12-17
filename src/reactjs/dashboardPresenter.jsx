@@ -4,9 +4,13 @@ import { observer } from "mobx-react-lite";
 import { getAuth } from "firebase/auth";
 import { DashboardView } from "../views/dashboardView";
 
-const Dashboard = observer(function DashboardRender() {
+const Dashboard = observer(function DashboardRender(props) {
   const auth = getAuth();
   const user = auth.currentUser;
+
+  const xp = props.model.XP;
+
+  console.log('xp', xp);
 
   function logout() {
     auth.signOut()
@@ -20,7 +24,7 @@ const Dashboard = observer(function DashboardRender() {
     window.location.hash = "#/login";
   }
 
-  return <DashboardView user={user} onLogout={logout} />;
+  return <DashboardView user={user} xp={xp} onLogout={logout} />;
 });
 
 export { Dashboard };
