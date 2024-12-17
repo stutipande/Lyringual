@@ -11,28 +11,24 @@ export function LoginView(props, props2/*temp all*/,usernameV, passwordV, loginA
        
     
     <div className="onTopOfEachOther">
-
-        <h1 className="logo">Lyringual.</h1>
         
-        <label>mail:</label>
         <input 
 
             type="text"
             value={usernameV}
-            placeholder="mail"
+            placeholder="E-mail address"
             onChange={username}
 
            />
-           <label>password:</label>
            <input 
 
             type="password"
             value={passwordV}
-            placeholder="password"
+            placeholder="Password"
             onChange={pw}
 
             />
-            <div><button onClick={goToThing}>submit</button><button onClick={goToThing2}>register</button></div>
+            <div><button style={{marginRight: 20}} onClick={goToThing}>Login</button><button onClick={goToThing2}>Register</button></div>
     </div>
 
     );
