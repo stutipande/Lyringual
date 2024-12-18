@@ -156,18 +156,24 @@ header select {
     padding: var(--spacing-medium);
     border-top: 1px solid var(--border-color);
   }
-  
-  .bob{
+
+  .detailsButtons{
     display: flex;
+    justify-content: space-between;
+  }
+  
+  .lyricAndTranslationDiv{
+    display: flex;
+    justify-content: space-around;
   }
 
   .lyrics {
     align-self: flex-start;
-    padding-left: 0px;
-    padding-right: 20px;
+    margin: 0;
     font-family: var(--header-font);
-    font-size: 20pt;
-    width: 50%;
+    font-size: 1.5vw;
+    padding-inline: 1vw;
+    width: 45vw;
   }
 
   .lyrics li {
@@ -178,26 +184,24 @@ header select {
   }
 
   .testDiv {
-    margin-top: 2em;
     align-self: flex-start;
-    padding-left: 0px;
-    padding-right: 20px;
-    width: 50%;
+    padding-inline: 1vw;
+    width: 45vw;
   }
 
   .testInput {
     height: 1.5em;
     border: none;
     border-bottom: 1px solid white;
-    border-radius: 0;
+    border-radius: 0px;
     display: inline-block;
     background: none;
     font-family: var(--header-font);
-    font-size: 20pt;
+    font-size: 1.5vw;
     outline: none;
     box-shadow: none;
     padding: 0;
-    margin-bottom: -1px;
+    margin-bottom: -0.8px;
   }
 
   .correct {
@@ -250,6 +254,7 @@ header select {
 .topRightButton {
   float: right;
 }
+
 .user-icon {
   width: 20px;
   height: 20px;

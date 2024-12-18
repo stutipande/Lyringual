@@ -81,14 +81,16 @@ export function DetailsView(props) {
 
     return (
         <div>
-            <button className="topLeftButton" onClick={() => (window.location.hash = "#/search")}>Cancel</button>
-            {!props.testActivated &&
-                <button className="topRightButton" onClick={startTestACB}>Start test</button>
-            }
-            {props.testActivated &&
-                <button className="topRightButton" onClick={stopTestACB}>Stop test</button>
-            }
-            <div className="bob">
+            <div className="detailsButtons">
+            <button onClick={() => (window.location.hash = "#/search")}>Cancel</button>
+                {!props.testActivated &&
+                    <button onClick={startTestACB}>Start test</button>
+                }
+                {props.testActivated &&
+                    <button onClick={stopTestACB}>Stop test</button>
+                }
+            </div>
+            <div className="lyricAndTranslationDiv">
                 <ul className="lyrics" id="originalLyrics" style={{ listStyle: "none" }}>
                     {props.lyricData[0].map(renderLyricsCB)}
                 </ul>
