@@ -8,8 +8,8 @@ export function LoginView(props, props2/*temp all*/,usernameV, passwordV, nameV,
     function goToThing()
     {props.loginACB(usernameV,passwordV);}//if(usernameV=="aa" && passwordV=="aaa"){window.location.hash="#/search"}
     function goToThing2(){
-        const userNameToSave = nameV || null;
-        props.signUpACB(usernameV,passwordV, userNameToSave);}//if(usernameV=="aa" && passwordV=="aaa"){window.location.hash="#/search"}
+       // const userNameToSave = nameV || null;
+        props.signUpACB(usernameV,passwordV, nameV);}//if(usernameV=="aa" && passwordV=="aaa"){window.location.hash="#/search"}
 
     return(
        
@@ -42,9 +42,13 @@ export function LoginView(props, props2/*temp all*/,usernameV, passwordV, nameV,
 
             />
 
+           
             <div><button style={{marginRight: 20}} onClick={goToThing}>Login</button><button onClick={goToThing2}>Register</button></div>
     </div>
 
+    
     );
+
+    console.log(name)
 
 }
