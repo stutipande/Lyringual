@@ -15,6 +15,7 @@ const model = {
     clientId: null,
     user: {
         uid:null,
+        userName:null,
         email: null,
     },
     previousLang: null,
@@ -28,6 +29,7 @@ const model = {
         this.user = {
             uid: user.uid,
             email: user.email,
+            name: user.userName,
         };
     },
 
@@ -109,6 +111,7 @@ const model = {
 getDashboardData() {
     return {
         email: this.user.email,
+        name: this.user.userName,
         XP: this.XP,
     };
 },

@@ -42,7 +42,7 @@ export function DashboardView(props) {
 
 
       <div class="card">
-        <h1>Welcome, {props.user.email}</h1>
+        <h1>Welcome, {props.user.name}</h1>
 
         <p> Learn new languages by translating your favourite songs!</p>
       
