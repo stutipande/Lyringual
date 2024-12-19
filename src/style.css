@@ -172,7 +172,7 @@ header select {
     align-self: flex-start;
     margin: 0;
     font-family: var(--header-font);
-    font-size: 1.5vw;
+    font-size: 2vw;
     padding-inline: 1vw;
     width: 45vw;
   }
@@ -198,7 +198,7 @@ header select {
     display: inline-block;
     background: none;
     font-family: var(--header-font);
-    font-size: 1.5vw;
+    font-size: 2vw;
     outline: none;
     box-shadow: none;
     padding: 0;
