@@ -1,13 +1,20 @@
 import React from "react";
 import { getFlagFromLanguageCode, nextLevelXP, currentLevel, currentLevelXP, xpForLevel } from "../utilities"
 
-export function DashboardView({ user, xp, onLogout }) {
+export function DashboardView(props) {
+
+  console.log(props);
+
+      function handleLangClickACB(lang) {
+        window.location.hash = '#/search';
+        return props.onLangClick(lang); 
+    };
 
     function goToSearch(){
         window.location.hash = "#/search";
     }
 
-    const xp_array = Object.entries(xp).map(([lang, xpValue]) => ({
+    const xp_array = Object.entries(props.xp).map(([lang, xpValue]) => ({
       xp: xpValue,
       lang
     }));
@@ -21,7 +28,7 @@ export function DashboardView({ user, xp, onLogout }) {
       return <div 
       className="card progression"
       key={item.lang} 
-      onClick={() => console.log('Clicked: ', item)} 
+      onClick={() => handleLangClickACB(item.lang)} 
   >
     <span className="flag">{getFlagFromLanguageCode(item.lang)}</span>
       <p>Level {current_level}</p> 
@@ -35,14 +42,14 @@ export function DashboardView({ user, xp, onLogout }) {
 
 
       <div class="card">
-        <h1>Welcome, {user.email}</h1>
+        <h1>Welcome, {props.user.email}</h1>
 
         <p> Learn new languages by translating your favourite songs!</p>
       
 
       
         <button onClick={goToSearch}> Find a song! </button> &nbsp;
-        <button onClick={onLogout}>Logout</button>
+        <button onClick={props.onLogout}>Logout</button>
       </div>
 
 
