@@ -52,6 +52,7 @@ function ReactRoot(props){
                     <h2 className="logo">Lyringual.</h2>
                 <select
                 defaultValue={props.model.lang}
+                value={props.model.lang}
                 onChange={handleLanguageChange}
                 >
                     <option value="en">
