@@ -5,6 +5,7 @@ export function DashboardView(props) {
 
   console.log(props);
 
+
       function handleLangClickACB(lang) {
         window.location.hash = '#/search';
         return props.onLangClick(lang); 
@@ -13,6 +14,7 @@ export function DashboardView(props) {
     function goToSearch(){
         window.location.hash = "#/search";
     }
+
 
     const xp_array = Object.entries(props.xp).map(([lang, xpValue]) => ({
       xp: xpValue,
@@ -37,15 +39,17 @@ export function DashboardView(props) {
       </div>;
     }
 
+
   return (
     <div className="dashboard">
 
 
       <div class="card">
-        <h1>Welcome, {props.user ? props.user.name : "User"}</h1>
+        <h1>Welcome, {props.user.displayName}</h1>
 
         <p> Learn new languages by translating your favourite songs!</p>
       
+       
 
       
         <button onClick={goToSearch}> Find a song! </button> &nbsp;

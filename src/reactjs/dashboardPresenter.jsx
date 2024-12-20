@@ -10,6 +10,8 @@ const Dashboard = observer(function DashboardRender(props) {
 
   const xp = props.model.XP;
 
+  
+
   function handleLanguageClickACB(lang) {
       props.model.setPreferredLanguage(lang); 
   }
@@ -21,6 +23,8 @@ const Dashboard = observer(function DashboardRender(props) {
       })
       .catch((error) => console.error("Logout Error:", error.message));
   }
+
+  
 
   if (!user) {
     window.location.hash = "#/login";

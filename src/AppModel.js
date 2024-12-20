@@ -1,5 +1,6 @@
 import { searchSongs, getSongDetails } from "./songSource";
 import { resolvePromise } from "./resolvePromise";
+import { getAuth, updateProfile } from "firebase/auth";
 
 
 /* 
@@ -15,7 +16,7 @@ const model = {
     clientId: null,
     user: {
         uid:null,
-        name:null,
+        displayName:null,
         email: null,
     },
     previousLang: null,
@@ -24,13 +25,19 @@ const model = {
     testResults: [],
     originalLyric: null,
     XP: {},
+    newName: "",
 
     setUser(user) {
         this.user = {
             uid: user.uid,
             email: user.email,
-            name: user.name,
+            displayName: user.displayName,
         };
+        this.newName = user.displayName;
+    },
+
+    setNewName(newName){
+        this.newName = newName;
     },
 
     setXP(xp) {
@@ -108,14 +115,29 @@ const model = {
       },
 
 
-getDashboardData() {
-    return {
-        email: this.user.email,
-        name: this.user.name,
-        XP: this.XP,
-    };
-},
+    getDashboardData() {
+        return {
+            email: this.user.email,
+            name: this.user.name,
+            XP: this.XP,
+        };
+    },
 
-};
+    updateUserName(newName) {
+        const auth = getAuth();
+        const user = auth.currentUser;
+
+        return updateProfile(user, {
+            displayName: newName,
+          }).then(() => {
+            this.user.displayName = newName;  // Store updated displayName in model
+            this.newName = newName;           // Update newName in model
+            console.log("User name updated successfully");
+          }).catch((error) => {
+            console.error("Error updating name:", error.message);
+          });
+    },
+
+    };
 
 export {model};
