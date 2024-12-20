@@ -1,5 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, get, set} from "/src/teacherFirebase.js";
+import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
+import { getAnalytics } from "firebase/analytics";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged} from "firebase/auth"; //this is here only to keeps track of functions
 
 //chanses are that simply having a button with the signout function above and changing the page back to login would work as logout
@@ -44,7 +46,9 @@ const PATH="dinnerModel125/";
     lastSongId: model.lastSongId,
     preferredLanguage: model.lang || "en",
     xp: model.XP || 0,
-    searchParams: model.searchParams || null
+    searchParams: model.searchParams || null,
+    name: model.user.name || "",
+    email: model.user.email || "",
   };
 }
 
@@ -60,6 +64,11 @@ const PATH="dinnerModel125/";
     model.setXP(dataFromPersistence?.xp || {});
     model.setSearchQuery(dataFromPersistence?.searchParams?.query || "Like a prayer");
     model.setSearchType(dataFromPersistence?.searchParams?.type || "title");
+
+    if (dataFromPersistence?.name) {
+      model.user.name = dataFromPersistence.name;
+    } 
+
 }
 
 
@@ -73,7 +82,7 @@ const PATH="dinnerModel125/";
 }
 
 function readFromFirebase(model){
-  console.log("user:", model.user)
+  console.log("user:", model.user.name)
   console.log("userUID:", model.user.uid);
   if (model.user.uid){
   model.ready=false;

@@ -37,7 +37,7 @@ export function LoginView(props, props2/*temp all*/,usernameV, passwordV, nameV,
 
             type="text"
             value={nameV}
-            placeholder="Optional: Set your name"  
+            placeholder="Set name (optional)"  
             onChange={name}
 
             />
@@ -49,6 +49,6 @@ export function LoginView(props, props2/*temp all*/,usernameV, passwordV, nameV,
     
     );
 
-    console.log(name)
+ 
 
 }
