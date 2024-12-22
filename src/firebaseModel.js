@@ -4,10 +4,6 @@ import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged} from "firebase/auth"; //this is here only to keeps track of functions
 
-//chanses are that simply having a button with the signout function above and changing the page back to login would work as logout
-
-// Add relevant imports here 
-// TODO
 import {firebaseConfig} from "/src/firebaseConfig.js";
 
 
@@ -18,10 +14,9 @@ export const auth = getAuth(app);
 /*  PATH is the “root” Firebase path.*/
 const db= getDatabase(app);
 const PATH="Lyringual/";
-// set(ref(db, PATH+"/test"), "dummy");
 
-//const REF= PATH+"/test";
-//const rf= ref(db, REF);
+
+
 
  function modelToPersistence(model){
   return {
@@ -43,14 +38,14 @@ const PATH="Lyringual/";
   console.log('dataFromPersistence', dataFromPersistence);
   console.log('model', model);
 
-    // model.setCurrentSongId(dataFromPersistence.currentSongId)
-    // model.lastSongId = dataFromPersistence.lastSongId;
     model.setPreferredLanguage(dataFromPersistence?.preferredLanguage || "en");
     model.setXP(dataFromPersistence?.xp || {});
     model.setSearchQuery(dataFromPersistence?.searchParams?.query || "Like a prayer");
     model.setSearchType(dataFromPersistence?.searchParams?.type || "title");
     model.disableSearchTutorial(dataFromPersistence?.showSearchTutorial == undefined ? true : dataFromPersistence?.showSearchTutorial);
     model.disableTestTutorial(dataFromPersistence?.showTestTutorial  == undefined ? true : dataFromPersistence?.showTestTutorial);
+    model.setCurrentSongId(dataFromPersistence.currentSongId)
+    model.lastSongId = dataFromPersistence.lastSongId;
 
     console.log('dataFromPersistence?.showSearchTutorial', dataFromPersistence?.showSearchTutorial);
 
