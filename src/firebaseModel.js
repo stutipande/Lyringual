@@ -15,30 +15,13 @@ import {firebaseConfig} from "/src/firebaseConfig.js";
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 
-
-
-
-
-// Initialise firebase app, database, ref
-// TODO
-/*  PATH is the “root” Firebase path. NN is your TW2_TW3 group number */
+/*  PATH is the “root” Firebase path.*/
 const db= getDatabase(app);
-const PATH="dinnerModel125/";
+const PATH="Lyringual/";
 // set(ref(db, PATH+"/test"), "dummy");
 
 //const REF= PATH+"/test";
 //const rf= ref(db, REF);
-
-
-// set(
-//     ref(db, PATH+"/test2"), 
-//     modelToPersistence({
-//     numberOfGuests:5, 
-//     currentDishId:13, 
-//     dishes:[{id:13, title:"dummy1"}, 
-//             {id:42, title:"dummy2"}],
-//    }));
-
 
  function modelToPersistence(model){
   return {
