@@ -44,8 +44,8 @@ const PATH="Lyringual/";
     model.setSearchType(dataFromPersistence?.searchParams?.type || "title");
     model.disableSearchTutorial(dataFromPersistence?.showSearchTutorial == undefined ? true : dataFromPersistence?.showSearchTutorial);
     model.disableTestTutorial(dataFromPersistence?.showTestTutorial  == undefined ? true : dataFromPersistence?.showTestTutorial);
-    model.setCurrentSongId(dataFromPersistence.currentSongId)
-    model.lastSongId = dataFromPersistence.lastSongId;
+    model.setCurrentSongId(dataFromPersistence?.currentSongId || null)
+    model.lastSongId = dataFromPersistence?.lastSongId || null;
 
     console.log('dataFromPersistence?.showSearchTutorial', dataFromPersistence?.showSearchTutorial);
 
