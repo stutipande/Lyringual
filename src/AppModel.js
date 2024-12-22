@@ -25,6 +25,17 @@ const model = {
     originalLyric: null,
     XP: {},
     newName:null,
+    showTestTutorial: true,
+    showSearchTutorial: true,
+
+    disableSearchTutorial(enable=false) {
+        console.log('Setting search tut to: ', enable);
+        this.showSearchTutorial = enable;
+    },
+    disableTestTutorial(enable=false) {
+        console.log('Setting test tut to: ', enable);
+        this.showTestTutorial = enable;
+    },
     
 
     setUser(user) {

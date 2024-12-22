@@ -9,7 +9,7 @@ export function DetailsView(props) {
     const inputRefs = useRef([]);
 
     function renderLyricsCB(lyric, index) {
-        return <li onMouseUp={(e) => { removeTranslationTipACB(index, e); }}
+        return <li className="originalLyric" onMouseUp={(e) => { removeTranslationTipACB(index, e); }}
             onMouseDown={(e) => { getTranslationTipACB(index, e); }}
             style={{ display: "block" }} key={index}>{decodeHtmlEntities(lyric)}</li>;
     }

@@ -2,12 +2,28 @@ import { observer } from "mobx-react-lite";
 import { SearchFormView } from '../views/searchFormView.jsx';
 import { SearchResultsView } from '../views/searchResultsView.jsx';
 import { ClockLoader } from "react-spinners";
+import Joyride, { ACTIONS, EVENTS, ORIGIN, STATUS } from 'react-joyride';
+
 
 const Search = observer( 
 function SearchRender(props) {
     const searchTypeOptions = ["artist", "title"];
     const searchText = props.model.searchParams.query;  
-    const searchType = props.model.searchParams.type;   
+    const searchType = props.model.searchParams.type; 
+    let steps;
+
+    if ( props.model.showSearchTutorial ) {
+    steps = [
+        {
+          target: '.languagePicker',
+          content: 'Pick the language that you want to learn here!',
+        },
+        {
+            target: '.song',
+            content: 'Click on a song to start translating it!',
+        }
+    ];
+}
 
     // Custom Event Handlers
     function handleTextChange(text) {
@@ -68,8 +84,21 @@ function SearchRender(props) {
 
     }
 
+    const handleJoyrideCallback = (data) => {
+        const { action, index, origin, status, type } = data;
+        if (type == "tour:end") {
+            console.log('Doing the thing!')
+            props.model.disableSearchTutorial();
+        }
+      };
+
     return (
         <div>
+
+        <Joyride
+          steps={steps}
+          callback={handleJoyrideCallback}
+        />
 
             <SearchFormView
                 text={searchText}

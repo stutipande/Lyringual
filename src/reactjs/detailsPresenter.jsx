@@ -4,11 +4,25 @@ import {saveToFirebase} from "../firebaseModel.js";
 import { ClockLoader } from 'react-spinners';
 import toast, { Toaster } from 'react-hot-toast';
 import {nextLevelXP, currentLevelXP, currentLevel, getFlagFromLanguageCode, customToast} from '../utilities.js'
-
+import Joyride from 'react-joyride';
 
 const Details = observer( 
 function DetailsRender(props) {
   const currentSongPromiseState = props.model.currentSongPromiseState;
+
+  let steps;
+
+  if ( props.model.testActivated && props.model.showTestTutorial )
+  steps = [
+    {
+      target: '.testInput',
+      content: 'Type the translated lyrics in here!'
+    },
+    {
+      target: '.originalLyric',
+      content: 'Click and hold for a hint!'
+    },
+];
 
   function startTest() {
 
@@ -69,6 +83,15 @@ function DetailsRender(props) {
     props.model.removeTranslationTip(i);
   }
 
+  const handleJoyrideCallback = (data) => {
+    const { action, index, origin, status, type } = data;
+    if (type == "tour:end") {
+        console.log('Doing the thing!')
+        props.model.disableTestTutorial();
+    }
+  };
+
+
   const testActivated = props.model.testActivated; 
   const testResults = props.model.testResults;  
 
@@ -122,7 +145,11 @@ function DetailsRender(props) {
   
   return (
     <div>
-      {renderDetails(currentSongPromiseState)} 
+      {renderDetails(currentSongPromiseState)}
+      <Joyride
+        callback={handleJoyrideCallback}
+        steps={steps}
+        /> 
     </div>
   );
 }

@@ -49,6 +49,8 @@ const PATH="dinnerModel125/";
     searchParams: model.searchParams || null,
     name: model.user.name || "",
     email: model.user.email || "",
+    showTestTutorial: model.showTestTutorial,
+    showSearchTutorial: model.showSearchTutorial,
   };
 }
 
@@ -64,6 +66,10 @@ const PATH="dinnerModel125/";
     model.setXP(dataFromPersistence?.xp || {});
     model.setSearchQuery(dataFromPersistence?.searchParams?.query || "Like a prayer");
     model.setSearchType(dataFromPersistence?.searchParams?.type || "title");
+    model.disableSearchTutorial(dataFromPersistence?.showSearchTutorial == undefined ? true : dataFromPersistence?.showSearchTutorial);
+    model.disableTestTutorial(dataFromPersistence?.showTestTutorial  == undefined ? true : dataFromPersistence?.showTestTutorial);
+
+    console.log('dataFromPersistence?.showSearchTutorial', dataFromPersistence?.showSearchTutorial);
 
     if (dataFromPersistence?.name) {
       model.user.name = dataFromPersistence.name;
@@ -121,7 +127,7 @@ function readFromFirebase(model){
   }
 
   function isChangeImportantACB(){
-    return [model.lang, model.XP, model.searchParams];
+    return [model.lang, model.XP, model.searchParams, model.showTestTutorial, model.showSearchTutorial];
   }
 
   function saveChangesACB(){
