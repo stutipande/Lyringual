@@ -3,6 +3,7 @@ import React from "react";
 import { observer } from "mobx-react-lite";
 import { getAuth } from "firebase/auth";
 import { DashboardView } from "../views/dashboardView";
+import { customToast } from "../utilities";
 
 const Dashboard = observer(function DashboardRender(props) {
   const auth = getAuth();
@@ -31,7 +32,9 @@ const Dashboard = observer(function DashboardRender(props) {
   function logout() {
     auth.signOut()
       .then(() => {
+        
         window.location.hash = "#/login";
+        customToast("Logged out successfully.", "🔑");
       })
       .catch((error) => console.error("Logout Error:", error.message));
   }

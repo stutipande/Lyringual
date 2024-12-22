@@ -8,6 +8,10 @@ export function LoginView(props, props2/*temp all*/,usernameV, passwordV, nameV,
     {props.loginACB(usernameV,passwordV);}//if(usernameV=="aa" && passwordV=="aaa"){window.location.hash="#/search"}
     function goToThing2(){
        // const userNameToSave = nameV || null;
+        if (!usernameV || !passwordV) {
+            props.missingDetails();
+            return;
+        }
         props.signUpACB(usernameV,passwordV);}//if(usernameV=="aa" && passwordV=="aaa"){window.location.hash="#/search"}
         
 

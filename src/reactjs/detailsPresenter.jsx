@@ -2,6 +2,9 @@ import { DetailsView } from '../views/detailsView.jsx';
 import { observer } from "mobx-react-lite";
 import {saveToFirebase} from "../firebaseModel.js";
 import { ClockLoader } from 'react-spinners';
+import toast, { Toaster } from 'react-hot-toast';
+import {nextLevelXP, currentLevelXP, currentLevel, getFlagFromLanguageCode, customToast} from '../utilities.js'
+
 
 const Details = observer( 
 function DetailsRender(props) {
@@ -27,6 +30,22 @@ function DetailsRender(props) {
     return normalizedStr;
 }
 
+  function sendToast() {
+
+    const item = props.model.XP[props.model.lang];
+
+
+    const next_level_xp = nextLevelXP(item);
+    const current_level_xp = currentLevelXP(item);
+    const current_level = currentLevel(item);
+
+    customToast(<span>
+      <p>Level {current_level}</p> 
+      <progress value={(item - current_level_xp) / (next_level_xp - current_level_xp)} />
+      <p>{(item - current_level_xp)} / {(next_level_xp - current_level_xp)}</p>
+      </span>, getFlagFromLanguageCode(props.model.lang))
+  }
+
 
   function checkTest(lyric, index, value) {
     console.log(normalizeString(lyric.substring(0, value.length)), normalizeString(value));
@@ -35,6 +54,7 @@ function DetailsRender(props) {
       props.model.incrementXP();
       saveToFirebase(props.model);
       props.model.setTestResult(index, "completed");
+      sendToast();
     } else {
       props.model.setTestResult(index, correctTranslation);
     }
