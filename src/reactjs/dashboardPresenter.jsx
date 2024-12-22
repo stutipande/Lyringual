@@ -7,14 +7,26 @@ import { DashboardView } from "../views/dashboardView";
 const Dashboard = observer(function DashboardRender(props) {
   const auth = getAuth();
   const user = auth.currentUser;
-
   const xp = props.model.XP;
+  const newName = props.model.name;
+  
 
   
 
   function handleLanguageClickACB(lang) {
       props.model.setPreferredLanguage(lang); 
   }
+
+
+
+ function handleNameChangeACB(name){
+
+  return props.model.setName(name);
+ 
+}
+ 
+
+  
 
   function logout() {
     auth.signOut()
@@ -30,7 +42,7 @@ const Dashboard = observer(function DashboardRender(props) {
     window.location.hash = "#/login";
   }
 
-  return <DashboardView user={user} xp={xp} onLangClick={handleLanguageClickACB} onLogout={logout} />;
+  return <DashboardView user={user} xp={xp} newName ={newName} onClick={handleNameChangeACB} onLangClick={handleLanguageClickACB} onLogout={logout} />;
 });
 
 export { Dashboard };

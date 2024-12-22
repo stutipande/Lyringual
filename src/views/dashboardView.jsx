@@ -1,9 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 import { getFlagFromLanguageCode, nextLevelXP, currentLevel, currentLevelXP, xpForLevel } from "../utilities"
 
 export function DashboardView(props) {
 
+
   console.log(props);
+  const [newName,setNewName] = useState(props.newName);
 
 
       function handleLangClickACB(lang) {
@@ -11,6 +13,12 @@ export function DashboardView(props) {
         return props.onLangClick(lang); 
     };
 
+    function handleNameChangeACB(){
+      window.location.hash = '#/dashboard';
+      return props.onClick(newName);
+     
+   }
+   
     function goToSearch(){
         window.location.hash = "#/search";
     }
@@ -45,21 +53,35 @@ export function DashboardView(props) {
 
 
       <div class="card">
-        <h1>Welcome, {props.user.displayName}</h1>
+        <h1>Welcome, {newName}</h1>
 
         <p> Learn new languages by translating your favourite songs!</p>
-      
-       
 
+      
+        </div>
+
+        <div class="selections">
       
         <button onClick={goToSearch}> Find a song! </button> &nbsp;
         <button onClick={props.onLogout}>Logout</button>
       </div>
 
-
     <div className="progressionBox">
       {xp_array.length ? xp_array.map(printProgressionCB) : <div>Start your journey by finding a song to translate!</div>}
       </div>
+
+      <div>
+        <label htmlFor="username">Set a new name:</label>
+        <input 
+            type="text" 
+            id="username" 
+            value={newName} 
+            onChange={(e) => setNewName(e.target.value)} 
+            placeholder="Enter your name" 
+        />
+        <button onClick={handleNameChangeACB}>Update Name</button>
+      </div>
+
     </div>
   );
 }

@@ -16,7 +16,6 @@ const model = {
     clientId: null,
     user: {
         uid:null,
-        displayName:null,
         email: null,
     },
     previousLang: null,
@@ -25,20 +24,22 @@ const model = {
     testResults: [],
     originalLyric: null,
     XP: {},
-    newName: "",
+    newName:null,
+    
 
     setUser(user) {
         this.user = {
             uid: user.uid,
             email: user.email,
-            displayName: user.displayName,
         };
-        this.newName = user.displayName;
+        
     },
 
-    setNewName(newName){
-        this.newName = newName;
+    setName(newName){
+        this.name = newName;
     },
+
+   
 
     setXP(xp) {
         this.XP = xp;
@@ -118,25 +119,12 @@ const model = {
     getDashboardData() {
         return {
             email: this.user.email,
-            name: this.user.name,
+            name: this.name,
             XP: this.XP,
         };
     },
 
-    updateUserName(newName) {
-        const auth = getAuth();
-        const user = auth.currentUser;
-
-        return updateProfile(user, {
-            displayName: newName,
-          }).then(() => {
-            this.user.displayName = newName;  // Store updated displayName in model
-            this.newName = newName;           // Update newName in model
-            console.log("User name updated successfully");
-          }).catch((error) => {
-            console.error("Error updating name:", error.message);
-          });
-    },
+    
 
     };
 
