@@ -112,6 +112,11 @@ function readFromFirebase(model){
     if(user) {
       model.setUser(user);
       readFromFirebase(model);
+    } else {
+      model.setUser({
+        uid: null,
+        email: null,
+    })
     }
   }
 
