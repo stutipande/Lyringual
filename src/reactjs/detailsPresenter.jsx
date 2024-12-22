@@ -5,6 +5,7 @@ import { ClockLoader } from 'react-spinners';
 import toast, { Toaster } from 'react-hot-toast';
 import {nextLevelXP, currentLevelXP, currentLevel, getFlagFromLanguageCode, customToast} from '../utilities.js'
 import Joyride from 'react-joyride';
+import { defaultOptions } from '../tooltipStyle.js';
 
 const Details = observer( 
 function DetailsRender(props) {
@@ -149,6 +150,7 @@ function DetailsRender(props) {
       <Joyride
         callback={handleJoyrideCallback}
         steps={steps}
+        styles={defaultOptions}
         /> 
     </div>
   );

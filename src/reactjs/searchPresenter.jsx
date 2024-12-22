@@ -4,6 +4,8 @@ import { SearchResultsView } from '../views/searchResultsView.jsx';
 import { ClockLoader } from "react-spinners";
 import Joyride, { ACTIONS, EVENTS, ORIGIN, STATUS } from 'react-joyride';
 
+import {defaultOptions} from '../tooltipStyle.js'
+
 
 const Search = observer( 
 function SearchRender(props) {
@@ -98,6 +100,7 @@ function SearchRender(props) {
         <Joyride
           steps={steps}
           callback={handleJoyrideCallback}
+          styles={defaultOptions}
         />
 
             <SearchFormView
