@@ -1,7 +1,7 @@
 import { PROJECT_ID, GENIUS_ACCESS_TOKEN, GENIUS_CLIENT_ID, GENIUS_CLIENT_SERCRET, GENIUS_URL, PROXY_KEY, PROXY_URL_NEW, G_API_KEY } from "./apiConfig";
 import { getLyrics, getSong, getSongById, searchSong } from 'genius-lyrics-api';
 import { Translate } from '@google-cloud/translate/build/src/v2';
-
+import { decode } from "html-entities";
 
 const translate = new Translate({PROJECT_ID});
 
@@ -140,7 +140,7 @@ export async function getSongTranslation(original, lang) {
             throw new Error(`Error: ${response.status} - ${response.statusText}`);
         }
         const json = await response.json();
-        return json.data.translations[0].translatedText;
+        return decode(json.data.translations[0].translatedText);
     });
 
     const translation = await Promise.all(promises);

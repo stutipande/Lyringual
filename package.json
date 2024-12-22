@@ -30,6 +30,7 @@
         "@vitejs/plugin-react": "^4.3.4",
         "firebase": "^9.17.1",
         "genius-lyrics-api": "^3.2.1",
+        "html-entities": "^2.5.2",
         "mobx": "^6.8.0",
         "mobx-react-lite": "^3.4.2",
         "parse-git-config": "^3.0.0",
