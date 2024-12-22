@@ -40,7 +40,7 @@ function DetailsRender(props) {
   function normalizeString(str) {
     if (!str) return "";
     const lowerCaseStr = str.toLowerCase();
-    const normalizedStr = lowerCaseStr.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    const normalizedStr = lowerCaseStr.normalize("NFD").replace(/[\u0200-\u059f']/g, "");
     
     return normalizedStr;
 }
@@ -63,7 +63,6 @@ function DetailsRender(props) {
 
 
   function checkTest(lyric, index, value) {
-    console.log(normalizeString(lyric.substring(0, value.length)), normalizeString(value));
     const correctTranslation = (normalizeString(lyric.substring(0, value.length)) === normalizeString(value));
     if ((normalizeString(lyric)) === normalizeString(value)) {
       props.model.incrementXP();
