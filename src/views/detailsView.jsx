@@ -81,6 +81,9 @@ export function DetailsView(props) {
 
     return (
         <div>
+       { props.lyricData[0] != undefined && props.lyricData[1] != undefined  ?
+            
+        <>
             <div className="detailsButtons">
             <button onClick={() => (window.location.hash = "#/search")}>Cancel</button>
                 {!props.testActivated &&
@@ -105,6 +108,11 @@ export function DetailsView(props) {
                     </div>
                 }
             </div>
+            </>
+
+            : 
+
+            <p>An error with fetching this song occured, please try another one 😭</p>}
         </div>
     );
 }
