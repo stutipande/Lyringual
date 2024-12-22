@@ -8,8 +8,7 @@ export function resolvePromise(promise, promiseState) {
 
     function successACB(result) {
 
-        if (promiseState.promise == promise) promiseState.data = result;
-        // console.log('result', result);
+        if (promiseState.promise == promise) promiseState.data = result || [];
 
     }
 

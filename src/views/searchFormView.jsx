@@ -34,7 +34,6 @@
                     value={props.type} 
                     onChange={handleTypeChange}
                 >
-                    <option value="">Choose:</option>
                     {renderSearchTypeOptions()}
                 </select>
                 <button type = "submit">Search!</button><br></br>

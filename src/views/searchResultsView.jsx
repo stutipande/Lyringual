@@ -25,6 +25,6 @@ export function SearchResultsView(props) {
     };
 
     return (
-        <div className="searchResult"> {renderSearchResultsCB()}</div>
+        <div className="searchResult"> {props.searchResults.length ? renderSearchResultsCB() : <p>No search results 😭</p>}</div>
     );
 }

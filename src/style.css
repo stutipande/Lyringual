@@ -360,9 +360,16 @@ select:disabled {
   cursor: not-allowed;
 }
 
+#searchForm {
+  width: 100vw;
+}
+
 #searchForm * {
-  max-width: 40%;
   margin: 10px;
+}
+
+#searchForm form * {
+  width: 30%;
 }
 
 .mainContent {
