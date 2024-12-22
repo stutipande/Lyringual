@@ -13,23 +13,23 @@ function makeRouter(model) {
     return createHashRouter([
         {
             path: "/",
-            element: model.user?.uid ? <Navigate to="/dashboard" replace /> : <Login model={model} />,
+            element: model.user?.uid != false ? <Navigate to="/dashboard" replace /> : <Login model={model} />,
         },
         {
             path: "/search",
-            element: model.user?.uid ? <Search model={model} /> : <Navigate to="/" replace />,
+            element: model.user?.uid != false ? <Search model={model} /> : <Navigate to="/" replace />,
         },
         {
             path: "/details",
-            element: model.user?.uid ? <Details model={model} /> : <Navigate to="/" replace />,
+            element: model.user?.uid != false ? <Details model={model} /> : <Navigate to="/" replace />,
         },
         {
             path: "/login",
-            element: model.user?.uid ? <Navigate to="/dashboard" replace /> : <Login model={model} />,
+            element: model.user?.uid != false ? <Navigate to="/dashboard" replace /> : <Login model={model} />,
         },
         {
             path: "/dashboard",
-            element: model.user?.uid ? <Dashboard model={model} /> : <Navigate to="/" replace />,
+            element: model.user?.uid != false ? <Dashboard model={model} /> : <Navigate to="/" replace />,
         },
     ]);
 }

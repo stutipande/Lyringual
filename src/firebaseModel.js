@@ -103,8 +103,8 @@ function readFromFirebase(model){
       readFromFirebase(model);
     } else {
       model.setUser({
-        uid: null,
-        email: null,
+        uid: false,
+        email: false,
     })
     }
   }
