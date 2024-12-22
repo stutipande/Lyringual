@@ -16,6 +16,7 @@ export function DashboardView(props) {
     function handleNameChangeACB(){
       window.location.hash = '#/dashboard';
       return props.onClick(newName);
+      setNewName('');
      
    }
    
@@ -51,7 +52,6 @@ export function DashboardView(props) {
   return (
     <div className="dashboard">
 
-
       <div class="card">
         <h1>Welcome, {newName}</h1>
 
@@ -62,26 +62,34 @@ export function DashboardView(props) {
 
         <div class="selections">
       
-        <button onClick={goToSearch}> Find a song! </button> &nbsp;
-        <button onClick={props.onLogout}>Logout</button>
+        <button className="find-song" onClick={goToSearch}> <h3>Find a song!</h3> </button> &nbsp;
+       
       </div>
 
     <div className="progressionBox">
       {xp_array.length ? xp_array.map(printProgressionCB) : <div>Start your journey by finding a song to translate!</div>}
       </div>
 
-      <div>
-        <label htmlFor="username">Set a new name:</label>
-        <input 
-            type="text" 
-            id="username" 
-            value={newName} 
-            onChange={(e) => setNewName(e.target.value)} 
-            placeholder="Enter your name" 
-        />
-        <button onClick={handleNameChangeACB}>Update Name</button>
-      </div>
+    
+  <div className="edit-profile">
+  <label htmlFor="username">Edit profile:</label>
+  <input 
+      type="text" 
+      id="username" 
+      value={newName} 
+      onChange={(e) => setNewName(e.target.value)} 
+      placeholder="Set new name:" 
+      
+  />
+    <button onClick={handleNameChangeACB}>Update Name</button>
+  </div>
+  <div className = "button-container">
 
-    </div>
+  <button onClick={props.onLogout}>Logout</button>
+  
+  </div>
+  </div>
+
+
   );
 }
