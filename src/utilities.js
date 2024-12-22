@@ -7,7 +7,7 @@ export function customToast(content, icon) {
   position: 'bottom-right',
 
   // Styling
-  style: {color: 'white'},
+  style: {color: 'white', backgroundColor: '#1e1e1e'},
   className: 'card',
 
   // Custom Icon
@@ -44,7 +44,6 @@ export function getFirebaseErrorMessage(error) {
       "auth/quota-exceeded": "Quota exceeded. Please try again later.",
       "auth/captcha-check-failed": "Captcha verification failed. Please try again.",
       "auth/missing-email": "An email address is required.",
-      // Add more Firebase error codes and messages as needed.
   };
 
   return errorMessages[error.code] || "An unknown error occurred. Please try again.";
