@@ -6,35 +6,32 @@ import { observer } from "mobx-react-lite";
 import { UserIcon } from "../userIcon.jsx";
 import ClockLoader from "react-spinners/ClockLoader";
 import "/src/style.css"
-import {  createHashRouter,  RouterProvider, useParams} from "react-router-dom";
+import {  createHashRouter,  RouterProvider, useParams, Navigate} from "react-router-dom";
+import toast, { Toaster } from 'react-hot-toast';
 
-function makeRouter(model){
-    // model will be needed in a MVP application
-    // as there we'll have different presenters instead of Dummy
-    // not used here
+function makeRouter(model) {
     return createHashRouter([
-    {
-        path: "/",
-        element: <Login model={model} />,
-    },
-    {
-        path: "/search",
-        element: <Search model={model} />,
-    },
-    {
-        path: "/details",
-        element: <Details model={model} />,
-    },
-    {
-        path: "/login",
-        element: <Login model={model} />,
-    },
-
-    {
-        path: "/dashboard",
-        element: <Dashboard model={model} />,
-    },
-])
+        {
+            path: "/",
+            element: model.user?.uid ? <Navigate to="/dashboard" replace /> : <Login model={model} />,
+        },
+        {
+            path: "/search",
+            element: model.user?.uid ? <Search model={model} /> : <Navigate to="/" replace />,
+        },
+        {
+            path: "/details",
+            element: model.user?.uid ? <Details model={model} /> : <Navigate to="/" replace />,
+        },
+        {
+            path: "/login",
+            element: model.user?.uid ? <Navigate to="/dashboard" replace /> : <Login model={model} />,
+        },
+        {
+            path: "/dashboard",
+            element: model.user?.uid ? <Dashboard model={model} /> : <Navigate to="/" replace />,
+        },
+    ]);
 }
 
 
@@ -119,6 +116,7 @@ function ReactRoot(props){
                 </header>
                 <div className="mainContent">
                     <RouterProvider router={makeRouter(props.model)} />
+                    <Toaster/>
                 </div>
             </div>
             :
