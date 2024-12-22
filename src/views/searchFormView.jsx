@@ -16,6 +16,7 @@
 
     function handleSearch (){
         props.onSearchSong();
+        event.preventDefault();
     }
 
     // Display last song
