@@ -73,8 +73,12 @@ export async function processSongDetailsACB(result) {
 
     textContent = textContent.slice(startIndex);
 
+    textContent = textContent.slice(0, textContent.length - 10);
 
-    return textContent.slice(0, textContent.length - 10);
+    textContent = textContent.filter(entry => entry && entry.trim() !== "");
+
+
+    return textContent;
 }
 
 
