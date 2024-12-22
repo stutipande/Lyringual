@@ -54,6 +54,7 @@ function ReactRoot(props){
                 defaultValue={props.model.lang}
                 value={props.model.lang}
                 onChange={handleLanguageChange}
+                className="languagePicker"
                 >
                     <option value="en">
                         🇺🇸
