@@ -14,7 +14,7 @@
         (props.onTypeChange(evt.target.value));
     }
 
-    function handleSearch (){
+    function handleSearch(event){
         props.onSearchSong();
         event.preventDefault();
     }

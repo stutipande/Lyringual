@@ -40,6 +40,9 @@ const ReactRoot = observer(
 function ReactRoot(props){
     function handleLanguageChange(evt){
         (props.model.setPreferredLanguage(evt.target.value));
+        if(window.location.hash == "#/details"){
+            props.model.setCurrentSongId(props.model.currentSongId)
+        }
             
     }
     return (props.model.ready ?
