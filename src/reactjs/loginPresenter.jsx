@@ -14,7 +14,7 @@ const Login = observer(
         
         
         function logIn(){ window.location.hash="#/dashboard"};
-        function nor(error){customToast((error.message), "🔑")};
+        function nor(error){customToast((error.message).replace("Firebase: Error (auth/", "").replace(")","").replace("-"," "), "🔑")};
         function loginACB(e,p){signInWithEmailAndPassword(auth, e,p).then(logIn).catch(nor);};//might move to firebasemodel and same for following function
         function signUpACB(e,p){createUserWithEmailAndPassword(auth,e,p).then(logIn).catch(nor)};
         function missingDetailsACB() {customToast("Please provide a valid email and password.", "🔑")}
