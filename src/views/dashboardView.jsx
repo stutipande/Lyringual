@@ -62,7 +62,7 @@ export function DashboardView(props) {
 
         <div class="selections">
       
-        <button className="find-song" onClick={goToSearch}> <h3>Find a song & select a new language!</h3> </button> &nbsp;
+        <button className="find-song" onClick={goToSearch}> <h3>Select a song & new language to learn!</h3> </button> &nbsp;
        
       </div>
 
@@ -71,7 +71,7 @@ export function DashboardView(props) {
       </div>
 
     
-  <div className = "button-container">
+  <div>
 
   <button onClick={props.onLogout}>Logout</button>
   

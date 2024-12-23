@@ -136,17 +136,6 @@ header select {
     margin-bottom: var(--spacing-large);
   }
 
-  .button-container {
-    margin-top: var(--spacing-large);
-    display:flex;
-    width: 30%;
-    flex-direction:column; 
-    gap: 12px;
-    align-content:center;
-
-    
-    
-  }
 
 
   .find-song {
