@@ -1,9 +1,13 @@
 
 
-export function LoginView(props, props2/*temp all*/,usernameV, passwordV, nameV, loginACB,signUpACB)
+export function LoginView(props)
 {//test user username: aa pw: aaa otherwise it does not matter since we are using google api thing, usernameV might after login be handed back as an currentUserId that is different for each user
-    function username(a){/*set model.etc... */ usernameV=a.target.value}
-    function pw(a){/*set model.etc... */passwordV=a.target.value}
+    //function username(a){/*set model.etc... */ props.usernameV=a.target.value; console.log(props)}
+    //function pw(a){/*set model.etc... */props.passwordV=a.target.value}
+    let passwordV;
+    let usernameV;
+    function doPW(a){console.log(props); passwordV=a.target.value}
+    function doUsername(a){usernameV=a.target.value}
     function goToThing()
     {props.loginACB(usernameV,passwordV);}//if(usernameV=="aa" && passwordV=="aaa"){window.location.hash="#/search"}
     function goToThing2(){
@@ -25,7 +29,7 @@ export function LoginView(props, props2/*temp all*/,usernameV, passwordV, nameV,
             type="text"
             value={usernameV}
             placeholder="E-mail address"
-            onChange={username}
+            onChange={doUsername}
 
            />
            <input 
@@ -33,7 +37,7 @@ export function LoginView(props, props2/*temp all*/,usernameV, passwordV, nameV,
             type="password"
             value={passwordV}
             placeholder="Password"
-            onChange={pw}
+            onChange={doPW}
 
             />
 

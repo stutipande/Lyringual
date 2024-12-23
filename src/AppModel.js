@@ -28,6 +28,7 @@ const model = {
     showTestTutorial: true,
     showSearchTutorial: true,
 
+
     disableSearchTutorial(enable=false) {
         console.log('Setting search tut to: ', enable);
         this.showSearchTutorial = enable;
