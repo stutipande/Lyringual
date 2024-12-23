@@ -53,7 +53,7 @@ export function DashboardView(props) {
     <div className="dashboard">
 
       <div class="card">
-        <h1>Welcome, {newName}</h1>
+        <h1>Welcome, {newName || props.user.email}</h1>
 
         <p> Learn new languages by translating your favourite songs!</p>
 
@@ -62,12 +62,12 @@ export function DashboardView(props) {
 
         <div class="selections">
       
-        <button className="find-song" onClick={goToSearch}> <h3>Find a song!</h3> </button> &nbsp;
+        <button className="find-song" onClick={goToSearch}> <h3>Find a song & select a new language!</h3> </button> &nbsp;
        
       </div>
 
     <div className="progressionBox">
-      {xp_array.length ? xp_array.map(printProgressionCB) : <div>Start your journey by finding a song to translate!</div>}
+      {xp_array.length ? xp_array.map(printProgressionCB) : <div> <h3>Start your journey by finding a song to translate!</h3></div>}
       </div>
 
     
@@ -83,6 +83,7 @@ export function DashboardView(props) {
   />
     <button onClick={handleNameChangeACB}>Update Name</button>
   </div>
+
   <div className = "button-container">
 
   <button onClick={props.onLogout}>Logout</button>
