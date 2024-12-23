@@ -53,7 +53,7 @@ export function DashboardView(props) {
     <div className="dashboard">
 
       <div class="card">
-        <h1>Welcome, {newName || props.user.email}</h1>
+        <h1>Welcome, {props.user.email}</h1>
 
         <p> Learn new languages by translating your favourite songs!</p>
 
@@ -71,26 +71,12 @@ export function DashboardView(props) {
       </div>
 
     
-  <div className="edit-profile">
-  <label htmlFor="username">Edit profile:</label>
-  <input 
-      type="text" 
-      id="username" 
-      value={newName} 
-      onChange={(e) => setNewName(e.target.value)} 
-      placeholder="Set new name:" 
-      
-  />
-    <button onClick={handleNameChangeACB}>Update Name</button>
-  </div>
-
   <div className = "button-container">
 
   <button onClick={props.onLogout}>Logout</button>
   
   </div>
   </div>
-
 
   );
 }
