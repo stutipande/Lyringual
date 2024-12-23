@@ -6,7 +6,7 @@ export function LoginView(props)
     //function pw(a){/*set model.etc... */props.passwordV=a.target.value}
     let passwordV;
     let usernameV;
-    function doPW(a){console.log(props); passwordV=a.target.value}
+    function doPW(a){passwordV=a.target.value}
     function doUsername(a){usernameV=a.target.value}
     function goToThing()
     {props.loginACB(usernameV,passwordV);}//if(usernameV=="aa" && passwordV=="aaa"){window.location.hash="#/search"}
